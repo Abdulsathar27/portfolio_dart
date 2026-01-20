@@ -2,7 +2,7 @@
     "name": "profitillo",
     "version": "1.0.0",
     "scripts": {
-        "build": "flutter build web --release"
+        "build": "echo 'Build skipped - using committed artifacts'"
     },
     "dependencies": {}
 }
