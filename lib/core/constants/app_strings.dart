@@ -2,7 +2,7 @@ class AppStrings {
   static const String name = "Abdul Sathar";
   static const String title = "Flutter Developer";
   static const String tagline =
-      "Building robust and scalable mobile applications";
+      "Crafting modern Flutter interfaces that feel smooth, intuitive, and alive.";
   static const String aboutMe = "About Me";
   static const String experience = "Experience";
   static const String projects = "Projects";

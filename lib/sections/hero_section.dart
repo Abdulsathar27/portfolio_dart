@@ -6,7 +6,13 @@ import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/widgets/custom_button.dart';
 import 'package:profitillo/widgets/responsive_wrapper.dart';
 import 'package:profitillo/widgets/animated_background.dart';
-import 'package:profitillo/providers/mouse_provider.dart';
+
+import 'package:google_fonts/google_fonts.dart';
+import 'package:profitillo/widgets/magnetic_text.dart';
+import 'package:profitillo/widgets/animated_role_tag.dart';
+import 'package:profitillo/providers/navigation_provider.dart';
+import 'package:profitillo/core/utils/web_utils.dart';
+import 'package:profitillo/widgets/interactive_illustration.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -14,7 +20,7 @@ class HeroSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height, 
+      height: MediaQuery.of(context).size.height,
       child: Stack(
         children: [
           const Positioned.fill(child: AnimatedBackground()),
@@ -68,21 +74,23 @@ class HeroSection extends StatelessWidget {
       children: [
         Text(
           "Hello, I'm",
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          style: GoogleFonts.outfit(
+            fontSize: 24,
             color: AppColors.primary,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
             letterSpacing: 1.5,
           ),
         ).animate().fadeIn(duration: 600.ms).slideX(begin: -0.1, end: 0),
 
         const SizedBox(height: 10),
 
-        Text(
-              AppStrings.name,
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
+        MagneticText(
+              text: AppStrings.name,
+              style: GoogleFonts.outfit(
                 fontWeight: FontWeight.w900,
-                fontSize: ResponsiveWrapper.isDesktop(context) ? 80 : 48,
-                height: 1.1,
+                fontSize: ResponsiveWrapper.isDesktop(context) ? 90 : 56,
+                height: 1.0,
+                color: Theme.of(context).textTheme.displayLarge?.color,
                 shadows: [
                   Shadow(
                     color: AppColors.primary.withOpacity(0.3),
@@ -91,31 +99,25 @@ class HeroSection extends StatelessWidget {
                   ),
                 ],
               ),
+              strength: 0.8,
             )
             .animate()
             .fadeIn(delay: 200.ms, duration: 800.ms, curve: Curves.easeOut)
-            .slideX(begin: -0.1, end: 0)
-            .shimmer(duration: 2000.ms, color: Colors.white.withOpacity(0.2)),
-
-        Text(
-              AppStrings.title,
-              style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                color: AppColors.textSecondary,
-                fontWeight: FontWeight.w500,
-              ),
-            )
-            .animate()
-            .fadeIn(delay: 400.ms, duration: 800.ms, curve: Curves.easeOut)
             .slideX(begin: -0.1, end: 0),
+
+        const SizedBox(height: 20),
+
+        const AnimatedRoleTag(),
 
         const SizedBox(height: 20),
 
         Text(
               AppStrings.tagline,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              style: GoogleFonts.outfit(
                 color: AppColors.textSecondary,
-                fontSize: 18,
-                height: 1.5,
+                fontSize: 25,
+                height: 1.6,
+                fontWeight: FontWeight.w300,
               ),
             )
             .animate()
@@ -126,13 +128,24 @@ class HeroSection extends StatelessWidget {
 
         Row(
               children: [
-                CustomButton(text: "View Projects", onPressed: () {}),
+                CustomButton(
+                  text: "View Projects",
+                  onPressed: () {
+                    final navProvider = Provider.of<NavigationProvider>(
+                      context,
+                      listen: false,
+                    );
+                    navProvider.scrollTo(navProvider.projectsKey);
+                  },
+                ),
                 const SizedBox(width: 20),
                 CustomButton(
-                  text: "Download Resume",
-                  onPressed: () {},
+                  text: "View Resume",
+                  onPressed: () {
+                    openFileInNewTab('assets/resume/Abdul_Sathar_Resume.pdf');
+                  },
                   isOutlined: true,
-                  icon: Icons.download,
+                  icon: Icons.visibility,
                 ),
               ],
             )
@@ -144,105 +157,7 @@ class HeroSection extends StatelessWidget {
   }
 
   Widget _buildIllustration(BuildContext context) {
-    return Consumer<MouseProvider>(
-      builder: (context, mouse, child) {
-        // Parallax effect
-        final parallaxX =
-            (mouse.position.dx - MediaQuery.of(context).size.width / 2) * 0.02;
-        final parallaxY =
-            (mouse.position.dy - MediaQuery.of(context).size.height / 2) * 0.02;
-
-        return Transform.translate(
-          offset: Offset(parallaxX, parallaxY),
-          child: Container(
-            height: 400,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: RadialGradient(
-                colors: [
-                  AppColors.primary.withOpacity(0.2),
-                  AppColors.primary.withOpacity(0.0),
-                ],
-              ),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Floating elements
-                _FloatingIcon(
-                  icon: Icons.code,
-                  size: 80,
-                  color: AppColors.primary,
-                  offset: const Offset(-50, -50),
-                  delay: 0,
-                ),
-                _FloatingIcon(
-                  icon: Icons.flutter_dash,
-                  size: 60,
-                  color: Colors.blue,
-                  offset: const Offset(60, -20),
-                  delay: 1000,
-                ),
-                _FloatingIcon(
-                  icon: Icons.phone_android,
-                  size: 50,
-                  color: Colors.green,
-                  offset: const Offset(-20, 60),
-                  delay: 2000,
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _FloatingIcon extends StatelessWidget {
-  final IconData icon;
-  final double size;
-  final Color color;
-  final Offset offset;
-  final int delay;
-
-  const _FloatingIcon({
-    required this.icon,
-    required this.size,
-    required this.color,
-    required this.offset,
-    required this.delay,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: offset,
-      child:
-          Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: color.withOpacity(0.3),
-                      blurRadius: 20,
-                      spreadRadius: 5,
-                    ),
-                  ],
-                ),
-                child: Icon(icon, size: size, color: color),
-              )
-              .animate(onPlay: (controller) => controller.repeat(reverse: true))
-              .moveY(
-                begin: -10,
-                end: 10,
-                duration: 3000.ms,
-                curve: Curves.easeInOut,
-                delay: Duration(milliseconds: delay),
-              ),
-    );
+    return const InteractiveIllustration();
   }
 }
 
