@@ -23,7 +23,7 @@ class ProjectDetailDialog extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withValues(alpha: 0.2),
                 blurRadius: 50,
                 spreadRadius: 10,
               ),
@@ -47,7 +47,7 @@ class ProjectDetailDialog extends StatelessWidget {
                               end: Alignment.bottomCenter,
                               colors: [
                                 Colors.transparent,
-                                Colors.black.withOpacity(0.7),
+                                Colors.black.withValues(alpha: 0.7),
                               ],
                             ),
                           ),
@@ -87,12 +87,14 @@ class ProjectDetailDialog extends StatelessWidget {
                             children: project.tags.map((tag) {
                               return Chip(
                                 label: Text(tag),
-                                backgroundColor: AppColors.primary.withOpacity(
-                                  0.1,
+                                backgroundColor: AppColors.primary.withValues(
+                                  alpha: 0.1,
                                 ),
                                 labelStyle: TextStyle(color: AppColors.primary),
                                 side: BorderSide(
-                                  color: AppColors.primary.withOpacity(0.2),
+                                  color: AppColors.primary.withValues(
+                                    alpha: 0.2,
+                                  ),
                                 ),
                               );
                             }).toList(),
@@ -146,7 +148,7 @@ class ProjectDetailDialog extends StatelessWidget {
                   icon: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.5),
+                      color: Colors.black.withValues(alpha: 0.5),
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(Icons.close, color: Colors.white),

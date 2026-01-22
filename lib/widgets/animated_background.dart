@@ -42,8 +42,8 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
             (_random.nextDouble() - 0.5) * 0.2,
           ),
           size: 2 + _random.nextDouble() * 4,
-          color: AppColors.primary.withOpacity(
-            0.1 + _random.nextDouble() * 0.2,
+          color: AppColors.primary.withValues(
+            alpha: 0.1 + _random.nextDouble() * 0.2,
           ),
         ),
       );
@@ -129,8 +129,8 @@ class _ParticlePainter extends CustomPainter {
       for (var other in particles) {
         final dist = (particle.position - other.position).distance;
         if (dist < 100) {
-          paint.color = AppColors.primary.withOpacity(
-            (1 - dist / 100) * 0.05,
+          paint.color = AppColors.primary.withValues(
+            alpha: (1 - dist / 100) * 0.05,
           ); // More subtle
           paint.strokeWidth = 1;
           canvas.drawLine(particle.position, other.position, paint);

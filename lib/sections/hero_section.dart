@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:profitillo/core/constants/app_assets.dart';
 import 'package:provider/provider.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
@@ -93,7 +94,7 @@ class HeroSection extends StatelessWidget {
                 color: Theme.of(context).textTheme.displayLarge?.color,
                 shadows: [
                   Shadow(
-                    color: AppColors.primary.withOpacity(0.3),
+                    color: AppColors.primary.withValues(alpha: 0.3),
                     offset: const Offset(4, 4),
                     blurRadius: 20,
                   ),
@@ -142,7 +143,7 @@ class HeroSection extends StatelessWidget {
                 CustomButton(
                   text: "View Resume",
                   onPressed: () {
-                    openFileInNewTab('assets/resume/Abdul_Sathar_Resume.pdf');
+                    openFileInNewTab(AppAssets.pdfsDir);
                   },
                   isOutlined: true,
                   icon: Icons.visibility,

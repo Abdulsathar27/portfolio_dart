@@ -36,7 +36,7 @@ class ProjectsSection extends StatelessWidget {
                 context: context,
                 barrierDismissible: true,
                 barrierLabel: "Project Details",
-                barrierColor: Colors.black.withOpacity(0.8),
+                barrierColor: Colors.black.withValues(alpha: 0.8),
                 transitionDuration: const Duration(milliseconds: 400),
                 pageBuilder: (context, _, __) =>
                     ProjectDetailDialog(project: project),

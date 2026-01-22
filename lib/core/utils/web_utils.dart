@@ -1,4 +1,5 @@
 import 'dart:html' as html;
+import 'package:url_launcher/url_launcher.dart';
 
 /// Triggers a file download in the browser.
 ///
@@ -28,8 +29,14 @@ void downloadFile(String url, {String? filename}) {
 
 /// Opens a file or URL in a new browser tab.
 ///
-/// This uses [html.window.open] to open the [url] in a new tab ('_blank').
+/// This uses [launchUrl] from url_launcher to open the [url] in a new tab.
 /// This is useful for viewing PDFs or external links without leaving the app.
-void openFileInNewTab(String url) {
-  html.window.open(url, '_blank');
+Future<void> openFileInNewTab(String url) async {
+  final uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri, webOnlyWindowName: '_blank');
+  } else {
+    // Fallback or error handling
+    html.window.open(url, '_blank');
+  }
 }

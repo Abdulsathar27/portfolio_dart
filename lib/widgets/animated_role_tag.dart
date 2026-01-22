@@ -10,10 +10,10 @@ class AnimatedRoleTag extends StatelessWidget {
     return Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.1),
+            color: AppColors.primary.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: AppColors.primary.withOpacity(0.3),
+              color: AppColors.primary.withValues(alpha: 0.3),
               width: 1,
             ),
           ),
@@ -24,7 +24,7 @@ class AnimatedRoleTag extends StatelessWidget {
                   .animate(onPlay: (controller) => controller.repeat())
                   .shimmer(
                     duration: 2000.ms,
-                    color: Colors.white.withOpacity(0.5),
+                    color: Colors.white.withValues(alpha: 0.5),
                   )
                   .shake(
                     hz: 4,
@@ -51,7 +51,7 @@ class AnimatedRoleTag extends StatelessWidget {
         .slideX(begin: -0.2, end: 0, curve: Curves.easeOutBack)
         .shimmer(
           duration: 3000.ms,
-          color: Colors.white.withOpacity(0.2),
+          color: Colors.white.withValues(alpha: 0.2),
           delay: 1000.ms,
         );
   }

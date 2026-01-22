@@ -30,7 +30,7 @@ class CustomCursor extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: provider.isHoveringInteractive
-                        ? AppColors.primary.withOpacity(0.2)
+                        ? AppColors.primary.withValues(alpha: 0.2)
                         : AppColors.primary,
                     border: provider.isHoveringInteractive
                         ? Border.all(color: AppColors.primary, width: 2)

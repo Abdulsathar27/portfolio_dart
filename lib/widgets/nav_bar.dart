@@ -21,7 +21,7 @@ class NavBar extends StatelessWidget {
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-          color: (isDark ? Colors.black : Colors.white).withOpacity(0.7),
+          color: (isDark ? Colors.black : Colors.white).withValues(alpha: 0.7),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:profitillo/core/constants/app_assets.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/widgets/responsive_wrapper.dart';
@@ -46,8 +47,8 @@ class AboutSection extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              "https://via.placeholder.com/400", // Replace with actual image
+            child: Image.asset(
+              AppAssets.profile, // Replace with actual image
               fit: BoxFit.cover,
               height: 400,
               width: double.infinity,
@@ -138,7 +139,7 @@ class AboutSection extends StatelessWidget {
           ],
         ).animate().fadeIn(delay: 800.ms, duration: 800.ms),
 
-        const SizedBox(height: 40),         
+        const SizedBox(height: 40),
       ],
     );
   }

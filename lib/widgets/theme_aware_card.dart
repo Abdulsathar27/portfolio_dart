@@ -22,15 +22,15 @@ class ThemeAwareCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: isDark
-              ? AppColors.primary.withOpacity(0.3)
+              ? AppColors.primary.withValues(alpha: 0.3)
               : Colors.transparent,
           width: 1,
         ),
         boxShadow: [
           BoxShadow(
             color: isDark
-                ? AppColors.primary.withOpacity(0.1)
-                : Colors.black.withOpacity(0.05),
+                ? AppColors.primary.withValues(alpha: 0.1)
+                : Colors.black.withValues(alpha: 0.05),
             blurRadius: isDark ? 20 : 30,
             spreadRadius: isDark ? 2 : 5,
             offset: isDark ? const Offset(0, 0) : const Offset(0, 10),

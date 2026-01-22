@@ -26,7 +26,9 @@ class HighlightText extends StatelessWidget {
           height: 8,
           child:
               Container(
-                color: (highlightColor ?? AppColors.primary).withOpacity(0.3),
+                color: (highlightColor ?? AppColors.primary).withValues(
+                  alpha: 0.3,
+                ),
               ).animate().scaleX(
                 alignment: Alignment.centerLeft,
                 duration: 600.ms,

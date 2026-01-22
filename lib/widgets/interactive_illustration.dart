@@ -46,7 +46,7 @@ class InteractiveIllustration extends StatelessWidget {
                             shape: BoxShape.circle,
                             gradient: RadialGradient(
                               colors: [
-                                AppColors.primary.withOpacity(0.2),
+                                AppColors.primary.withValues(alpha: 0.2),
                                 Colors.transparent,
                               ],
                               stops: const [0.0, 0.7],
@@ -63,17 +63,17 @@ class InteractiveIllustration extends StatelessWidget {
                     // Rotating Rings
                     _RotatingRing(
                       size: 280,
-                      color: AppColors.primary.withOpacity(0.1),
+                      color: AppColors.primary.withValues(alpha: 0.1),
                       speed: 20000,
                     ),
                     _RotatingRing(
                       size: 220,
-                      color: AppColors.primary.withOpacity(0.2),
+                      color: AppColors.primary.withValues(alpha: 0.2),
                       speed: -15000,
                     ),
                     _RotatingRing(
                       size: 160,
-                      color: AppColors.primary.withOpacity(0.3),
+                      color: AppColors.primary.withValues(alpha: 0.3),
                       speed: 10000,
                     ),
 
@@ -86,7 +86,7 @@ class InteractiveIllustration extends StatelessWidget {
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.primary.withOpacity(0.5),
+                                color: AppColors.primary.withValues(alpha: 0.5),
                                 blurRadius: 30,
                                 spreadRadius: 5,
                               ),
@@ -208,7 +208,7 @@ class _TechIcon extends StatelessWidget {
         shape: BoxShape.circle,
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.3),
+            color: color.withValues(alpha: 0.3),
             blurRadius: 15,
             spreadRadius: 2,
           ),
