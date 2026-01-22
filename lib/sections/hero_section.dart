@@ -143,7 +143,7 @@ class HeroSection extends StatelessWidget {
                 CustomButton(
                   text: "View Resume",
                   onPressed: () {
-                    openFileInNewTab(AppAssets.pdfsDir);
+                    openFileInNewTab(AppAssets.resume);
                   },
                   isOutlined: true,
                   icon: Icons.visibility,

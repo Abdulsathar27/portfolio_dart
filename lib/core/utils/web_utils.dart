@@ -32,7 +32,9 @@ void downloadFile(String url, {String? filename}) {
 /// This uses [launchUrl] from url_launcher to open the [url] in a new tab.
 /// This is useful for viewing PDFs or external links without leaving the app.
 Future<void> openFileInNewTab(String url) async {
-  final uri = Uri.parse(url);
+  // Encode the URL to handle spaces and special characters
+  final encodedUrl = Uri.encodeFull(url);
+  final uri = Uri.parse(encodedUrl);
   if (await canLaunchUrl(uri)) {
     await launchUrl(uri, webOnlyWindowName: '_blank');
   } else {
