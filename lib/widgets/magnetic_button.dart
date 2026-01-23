@@ -50,9 +50,11 @@ class _MagneticButtonState extends State<MagneticButton>
     final center = position + Offset(box.size.width / 2, box.size.height / 2);
     final delta = event.position - center;
 
-    setState(() {
-      _target = delta * widget.intensity;
-    });
+    if (mounted) {
+      setState(() {
+        _target = delta * widget.intensity;
+      });
+    }
 
     // Animate to target
     _animation = Tween<Offset>(
@@ -64,9 +66,11 @@ class _MagneticButtonState extends State<MagneticButton>
   }
 
   void _handleExit(PointerEvent event) {
-    setState(() {
-      _target = Offset.zero;
-    });
+    if (mounted) {
+      setState(() {
+        _target = Offset.zero;
+      });
+    }
     _animation = Tween<Offset>(
       begin: _animation.value,
       end: Offset.zero,

@@ -52,6 +52,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
 
   @override
   void dispose() {
+    _controller.stop();
     _controller.dispose();
     super.dispose();
   }

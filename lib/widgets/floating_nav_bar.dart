@@ -34,9 +34,9 @@ class _FloatingNavBarState extends State<FloatingNavBar> {
   void _scrollListener() {
     final currentOffset = widget.scrollController.offset;
     if (currentOffset > _lastScrollOffset && currentOffset > 50) {
-      if (_isVisible) setState(() => _isVisible = false);
+      if (_isVisible && mounted) setState(() => _isVisible = false);
     } else {
-      if (!_isVisible) setState(() => _isVisible = true);
+      if (!_isVisible && mounted) setState(() => _isVisible = true);
     }
     _lastScrollOffset = currentOffset;
   }

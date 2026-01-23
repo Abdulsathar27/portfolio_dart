@@ -14,11 +14,19 @@ class ExperienceSection extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Learning Journey",
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            "Professional Experience",
+            style: Theme.of(context).textTheme.displaySmall?.copyWith(
               fontWeight: FontWeight.bold,
               color: AppColors.primary,
+              letterSpacing: -0.5,
             ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            "My journey in the tech industry",
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 40),
           AnimatedTimeline(items: MockData.experience),

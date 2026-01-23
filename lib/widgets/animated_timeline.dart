@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/timeline_item.dart';
 
@@ -24,7 +25,6 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
       duration: const Duration(milliseconds: 1500),
     );
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-    // Start animation when widget builds (could be triggered by visibility detector)
     _controller.forward();
   }
 
@@ -39,119 +39,196 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
     return AnimatedBuilder(
       animation: _animation,
       builder: (context, child) {
-        return CustomPaint(
-          painter: _TimelinePainter(
-            itemCount: widget.items.length,
-            progress: _animation.value,
-            color: AppColors.primary,
-          ),
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: widget.items.length,
-            itemBuilder: (context, index) {
-              final item = widget.items[index];
-              // Calculate if this item should be visible based on progress
-              final itemProgress = (index + 1) / widget.items.length;
-              final isVisible =
-                  _animation.value >=
-                  itemProgress - (1.0 / widget.items.length);
+        return ListView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: widget.items.length,
+          itemBuilder: (context, index) {
+            final item = widget.items[index];
+            final itemProgress = (index + 1) / widget.items.length;
+            final isVisible =
+                _animation.value >= itemProgress - (1.0 / widget.items.length);
 
-              return Opacity(
-                opacity: isVisible ? 1.0 : 0.0,
-                child: Transform.translate(
-                  offset: Offset(0, isVisible ? 0 : 20),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 40, bottom: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.primary,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+            return Opacity(
+              opacity: isVisible ? 1.0 : 0.0,
+              child: Transform.translate(
+                offset: Offset(0, isVisible ? 0 : 20),
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Left Side: Date/Period
+                      SizedBox(
+                        width: 150,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 4, right: 20),
                           child: Text(
-                            item.year,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                            item.period,
+                            textAlign: TextAlign.right,
+                            style: GoogleFonts.spaceGrotesk(
+                              color: AppColors.textSecondary,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        Text(
-                          item.title,
-                          style: Theme.of(context).textTheme.titleLarge
-                              ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      // Center: Timeline Line and Dot
+                      SizedBox(
+                        width: 20,
+                        child: Stack(
+                          alignment: Alignment.topCenter,
+                          children: [
+                            // Vertical Line
+                            if (index != widget.items.length - 1)
+                              Positioned(
+                                top: 12,
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                child: Center(
+                                  child: Container(
+                                    width: 2,
+                                    color: AppColors.primary.withValues(
+                                      alpha: 0.2,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            // Dot
+                            Container(
+                              width: 12,
+                              height: 12,
+                              decoration: BoxDecoration(
+                                color: AppColors.background,
+                                border: Border.all(
+                                  color: AppColors.primary,
+                                  width: 2,
+                                ),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ],
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          item.description,
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(color: AppColors.textSecondary),
+                      ),
+                      // Right Side: Content
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 20, bottom: 60),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // Role Title
+                              Text(
+                                item.title,
+                                style: GoogleFonts.spaceGrotesk(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              // Company Name
+                              Text(
+                                item.company,
+                                style: GoogleFonts.spaceGrotesk(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.primary,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              // Description
+                              Text(
+                                item.description,
+                                style: GoogleFonts.inter(
+                                  fontSize: 16,
+                                  height: 1.6,
+                                  color: AppColors.textSecondary,
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+                              // Responsibilities
+                              ...item.responsibilities.map(
+                                (resp) => Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 8),
+                                        child: Container(
+                                          width: 6,
+                                          height: 6,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.primary.withValues(
+                                              alpha: 0.6,
+                                            ),
+                                            shape: BoxShape.circle,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 12),
+                                      Expanded(
+                                        child: Text(
+                                          resp,
+                                          style: GoogleFonts.inter(
+                                            fontSize: 15,
+                                            height: 1.5,
+                                            color: AppColors.textSecondary,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              // Skills
+                              Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: item.skills.map((skill) {
+                                  return Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 6,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.05,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4),
+                                      border: Border.all(
+                                        color: AppColors.primary.withValues(
+                                          alpha: 0.1,
+                                        ),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      skill,
+                                      style: GoogleFonts.spaceMono(
+                                        fontSize: 12,
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         );
       },
     );
-  }
-}
-
-class _TimelinePainter extends CustomPainter {
-  final int itemCount;
-  final double progress;
-  final Color color;
-
-  _TimelinePainter({
-    required this.itemCount,
-    required this.progress,
-    required this.color,
-  });
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-
-    // Draw vertical line
-    final totalHeight = size.height;
-    final lineHeight = totalHeight * progress;
-
-    // Line is positioned at left: 20 (center of 40px padding area roughly)
-    // Actually, let's align it with the dots.
-    // Dots are usually at the start of the item.
-
-    // We need to know the positions of items, but ListView lays them out.
-    // For a simple effect, we can just draw a line down the left side.
-
-    canvas.drawLine(const Offset(15, 0), Offset(15, lineHeight), paint);
-
-    // Draw dots based on progress
-    // This is tricky without exact item positions.
-    // A better approach for exact alignment is to have the items themselves draw the dots/line segments.
-    // But for this "drawing" animation, a continuous line is nice.
-    // Let's stick to the line for now and maybe add dots in the widget tree if needed,
-    // or assume uniform height (which is risky).
-
-    // Alternative: The widget tree above has padding-left: 40.
-    // So the line should be around x=15-20.
-  }
-
-  @override
-  bool shouldRepaint(covariant _TimelinePainter oldDelegate) {
-    return oldDelegate.progress != progress;
   }
 }
