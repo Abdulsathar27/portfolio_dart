@@ -83673,7 +83673,7 @@ $0(){var s=A.e6(this.a,!1,t.Ez)
 s.ki(0,s.d)},
 $S:0}
 A.a54.prototype={
-$0(){A.ZB("assets/assets/pdfs/Abdul Sathar.pdf")},
+$0(){A.ZB("resume.pdf")},
 $S:0}
 A.VW.prototype={
 J(a){var s=null,r=A.X(a).ok.Q

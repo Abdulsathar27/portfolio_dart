@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_assets.dart';
+
 import 'package:provider/provider.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
@@ -143,7 +143,7 @@ class HeroSection extends StatelessWidget {
                 CustomButton(
                   text: "View Resume",
                   onPressed: () {
-                    openFileInNewTab('assets/${AppAssets.resume}');
+                    openFileInNewTab('resume.pdf');
                   },
                   isOutlined: true,
                   icon: Icons.visibility,
