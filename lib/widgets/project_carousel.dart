@@ -83,6 +83,7 @@ class _ProjectCarouselState extends State<ProjectCarousel> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
               child: ProjectCard(
                 project: widget.projects[index],
+                index: index,
                 onTap: () => widget.onProjectTap(widget.projects[index]),
               ),
             ),

@@ -2,6 +2,7 @@ class Project {
   final String title;
   final String description;
   final List<String> tags;
+  final List<String> highlights;
   final String? codeUrl;
   final String? demoUrl;
 
@@ -9,6 +10,7 @@ class Project {
     required this.title,
     required this.description,
     required this.tags,
+    required this.highlights,
     this.codeUrl,
     this.demoUrl,
   });
@@ -18,33 +20,52 @@ final List<Project> mockProjects = [
   const Project(
     title: "AutoCare App",
     description:
-        "A service booking application built using Flutter and Firebase. Includes user authentication, service booking flow, booking status tracking, and provider-side dashboards with Firestore integration.",
-    tags: ["Flutter", "Firebase Auth", "Firestore", "Provider"],
+        "A comprehensive service booking platform connecting vehicle owners with trusted mechanics.",
+    highlights: [
+      "Real-time booking status tracking with Firebase streams",
+      "Provider dashboard for managing service requests",
+      "Secure authentication & role-based access control",
+    ],
+    tags: ["Flutter", "Firebase", "Firestore", "Provider"],
     codeUrl: "https://github.com",
   ),
 
   const Project(
-    title: "Shopping Hub (E-Commerce)",
+    title: "Shopping Hub",
     description:
-        "A modern e-commerce application developed using Flutter. Implemented REST API integration with Dio, Provider state management, MVC architecture, and search functionality with a clean UI.",
-    tags: ["Flutter", "REST API", "Dio", "Provider", "MVC"],
+        "A modern, feature-rich e-commerce application with a clean MVC architecture.",
+    highlights: [
+      "Custom REST API integration using Dio",
+      "Advanced product search & filtering logic",
+      "Smooth cart & checkout state management",
+    ],
+    tags: ["Flutter", "REST API", "Dio", "MVC"],
     codeUrl: "https://github.com",
   ),
 
   const Project(
-    title: "Student Record App",
+    title: "Student Record",
     description:
-        "A student management application using Flutter and Hive local database. Supports adding, editing, searching student records with image picker integration and reusable form components.",
-    tags: ["Flutter", "Hive", "Local Storage", "Image Picker"],
+        "Efficient student management system focused on data persistence and usability.",
+    highlights: [
+      "Offline-first architecture using Hive database",
+      "Optimized image handling & caching",
+      "Reusable form components with validation",
+    ],
+    tags: ["Flutter", "Hive", "Local Storage", "UI/UX"],
     codeUrl: "https://github.com",
   ),
 
   const Project(
-    title: "Cafe Today App",
+    title: "Cafe Today",
     description:
-        "A smart cafe ordering application built with Flutter and Hive. Focused on local data storage, clean UI design, and smooth user experience for managing cafe orders.",
-    tags: ["Flutter", "Hive", "Local Database", "UI Design"],
+        "Smart ordering solution streamlining cafe operations and customer experience.",
+    highlights: [
+      "Instant local order processing with Hive",
+      "Intuitive UI for rapid menu navigation",
+      "Dark mode support & custom theming",
+    ],
+    tags: ["Flutter", "Hive", "Design System", "Motion"],
     codeUrl: "https://github.com",
   ),
 ];
-
