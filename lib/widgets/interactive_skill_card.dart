@@ -6,8 +6,15 @@ import 'package:profitillo/widgets/skill_tooltip.dart';
 
 class InteractiveSkillCard extends StatefulWidget {
   final Skill skill;
+  final bool isDimmed;
+  final VoidCallback? onHover;
 
-  const InteractiveSkillCard({super.key, required this.skill});
+  const InteractiveSkillCard({
+    super.key,
+    required this.skill,
+    this.isDimmed = false,
+    this.onHover,
+  });
 
   @override
   State<InteractiveSkillCard> createState() => _InteractiveSkillCardState();
@@ -27,7 +34,10 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => _isHovering.value = true,
+      onEnter: (_) {
+        _isHovering.value = true;
+        widget.onHover?.call();
+      },
       onExit: (_) {
         _isHovering.value = false;
         _mousePos.value = Offset.zero;
@@ -49,64 +59,76 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
                   valueListenable: _mousePos,
                   builder: (context, mousePos, _) {
                     return AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOutCubic,
                       transform: Matrix4.identity()
                         ..translate(
                           isHovering ? mousePos.dx * 0.1 : 0.0,
                           isHovering ? mousePos.dy * 0.1 : 0.0,
                         )
-                        ..scale(isHovering ? 1.05 : 1.0),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 12,
+                        ..scale(
+                          isHovering ? 1.05 : (widget.isDimmed ? 0.95 : 1.0),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: isHovering
-                                ? AppColors.primary
-                                : AppColors.primary.withValues(alpha: 0.2),
-                            width: 1.5,
+                      child: AnimatedOpacity(
+                        duration: const Duration(milliseconds: 300),
+                        opacity: widget.isDimmed && !isHovering ? 0.3 : 1.0,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 12,
                           ),
-                          color: isHovering
-                              ? AppColors.primary.withValues(alpha: 0.1)
-                              : Colors.transparent,
-                          boxShadow: [
-                            if (isHovering)
-                              BoxShadow(
-                                color: AppColors.primary.withValues(alpha: 0.3),
-                                blurRadius: 15,
-                                spreadRadius: 2,
-                              ),
-                          ],
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                if (widget.skill.iconUrl != null) ...[
-                                  Image.network(
-                                    widget.skill.iconUrl!,
-                                    width: 24,
-                                    height: 24,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                              color: isHovering
+                                  ? AppColors.primary
+                                  : AppColors.primary.withValues(alpha: 0.2),
+                              width: 1.5,
+                            ),
+                            color: isHovering
+                                ? AppColors.primary.withValues(alpha: 0.1)
+                                : Colors.transparent,
+                            boxShadow: [
+                              if (isHovering)
+                                BoxShadow(
+                                  color: AppColors.primary.withValues(
+                                    alpha: 0.3,
                                   ),
-                                  const SizedBox(width: 8),
-                                ],
-                                Text(
-                                  widget.skill.name,
-                                  style: Theme.of(context).textTheme.bodyLarge
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                        color: isHovering
-                                            ? AppColors.primary
-                                            : Colors.white70,
-                                      ),
+                                  blurRadius: 15,
+                                  spreadRadius: 2,
                                 ),
-                              ],
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  if (widget.skill.iconUrl != null) ...[
+                                    Image.network(
+                                      widget.skill.iconUrl!,
+                                      width: 24,
+                                      height: 24,
+                                      errorBuilder:
+                                          (context, error, stackTrace) =>
+                                              const SizedBox.shrink(),
+                                    ),
+                                    const SizedBox(width: 8),
+                                  ],
+                                  Text(
+                                    widget.skill.name,
+                                    style: Theme.of(context).textTheme.bodyLarge
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          color: isHovering
+                                              ? AppColors.primary
+                                              : Colors.white70,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

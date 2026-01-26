@@ -27,7 +27,8 @@ final List<Project> mockProjects = [
       "Secure authentication & role-based access control",
     ],
     tags: ["Flutter", "Firebase", "Firestore", "Provider"],
-    codeUrl: "https://github.com",
+    codeUrl: "https://github.com/Abdulsathar27/autocareapp",
+    demoUrl: "https://github.com/Abdulsathar27/autocareapp",
   ),
 
   const Project(
@@ -40,7 +41,8 @@ final List<Project> mockProjects = [
       "Smooth cart & checkout state management",
     ],
     tags: ["Flutter", "REST API", "Dio", "MVC"],
-    codeUrl: "https://github.com",
+    codeUrl: "https://github.com/Abdulsathar27/shopping_hub_flutterApi",
+    demoUrl: "https://github.com/Abdulsathar27/shopping_hub_flutterApi",
   ),
 
   const Project(
@@ -53,7 +55,8 @@ final List<Project> mockProjects = [
       "Reusable form components with validation",
     ],
     tags: ["Flutter", "Hive", "Local Storage", "UI/UX"],
-    codeUrl: "https://github.com",
+    codeUrl: "https://github.com/Abdulsathar27/crud_hive",
+    demoUrl: "https://github.com/Abdulsathar27/crud_hive",
   ),
 
   const Project(
@@ -66,6 +69,7 @@ final List<Project> mockProjects = [
       "Dark mode support & custom theming",
     ],
     tags: ["Flutter", "Hive", "Design System", "Motion"],
-    codeUrl: "https://github.com",
+    codeUrl: "https://github.com/Abdulsathar27/cafe-today-",
+    demoUrl: "https://github.com/Abdulsathar27/cafe-today-",
   ),
 ];

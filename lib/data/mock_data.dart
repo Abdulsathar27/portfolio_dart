@@ -1,7 +1,122 @@
 import 'package:profitillo/models/skill.dart';
+import 'package:profitillo/models/skill_category.dart';
 import 'package:profitillo/models/timeline_item.dart';
 
 class MockData {
+  static const List<SkillCategory> skillCategories = [
+    SkillCategory(
+      title: 'Flutter & Dart',
+      skills: [
+        Skill(
+          name: 'Flutter',
+          proficiency: 0.95,
+          description: 'Cross-platform UI toolkit',
+          usageExample: 'Built responsive mobile & web applications',
+          iconUrl:
+              'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
+        ),
+        Skill(
+          name: 'Dart',
+          proficiency: 0.95,
+          description: 'Optimized language for UI',
+          usageExample: 'Developed core logic and data models',
+          iconUrl:
+              'https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png',
+        ),
+        Skill(
+          name: 'Widget Testing',
+          proficiency: 0.85,
+          description: 'UI Component Testing',
+          usageExample: 'Ensured widget reliability and regression testing',
+        ),
+      ],
+    ),
+    SkillCategory(
+      title: 'State Management',
+      skills: [
+        Skill(
+          name: 'Riverpod',
+          proficiency: 0.90,
+          description: 'Compile-safe State Management',
+          usageExample: 'Managed complex app state with dependency injection',
+        ),
+        Skill(
+          name: 'Provider',
+          proficiency: 0.90,
+          description: 'InheritedWidget Wrapper',
+          usageExample: 'Simple state sharing across widget tree',
+        ),
+        Skill(
+          name: 'Bloc',
+          proficiency: 0.80,
+          description: 'Business Logic Component',
+          usageExample: 'Separated business logic from UI events',
+        ),
+      ],
+    ),
+    SkillCategory(
+      title: 'Architecture',
+      skills: [
+        Skill(
+          name: 'Clean Architecture',
+          proficiency: 0.85,
+          description: 'Separation of Concerns',
+          usageExample: 'Implemented Domain, Data, and Presentation layers',
+        ),
+        Skill(
+          name: 'MVVM',
+          proficiency: 0.90,
+          description: 'Model-View-ViewModel',
+          usageExample: 'Decoupled UI from business logic',
+        ),
+      ],
+    ),
+    SkillCategory(
+      title: 'Backend & Tools',
+      skills: [
+        Skill(
+          name: 'Firebase',
+          proficiency: 0.85,
+          description: 'Backend-as-a-Service',
+          usageExample: 'Auth, Firestore, Cloud Functions',
+          iconUrl:
+              'https://firebase.google.com/static/images/brand-guidelines/logo-logomark.png',
+        ),
+        Skill(
+          name: 'REST API',
+          proficiency: 0.80,
+          description: 'Network Communication',
+          usageExample: 'Integrated 3rd party services via HTTP',
+        ),
+        Skill(
+          name: 'Git',
+          proficiency: 0.90,
+          description: 'Version Control',
+          usageExample: 'Managed code history and collaboration',
+          iconUrl:
+              'https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png',
+        ),
+      ],
+    ),
+    SkillCategory(
+      title: 'UI/UX',
+      skills: [
+        Skill(
+          name: 'Figma',
+          proficiency: 0.75,
+          description: 'Interface Design',
+          usageExample: 'Translated designs to pixel-perfect code',
+        ),
+        Skill(
+          name: 'Animations',
+          proficiency: 0.85,
+          description: 'Interactive Motion',
+          usageExample: 'Created custom implicit and explicit animations',
+        ),
+      ],
+    ),
+  ];
+
   static const List<Skill> skills = [
     Skill(
       name: 'Flutter',
@@ -55,30 +170,30 @@ class MockData {
 
   static const List<TimelineItem> experience = [
     TimelineItem(
-  year: '2025',
-  period: 'May 2025 - Present',
-  title: 'Flutter Developer',
-  company: 'Bridgeon Solutions LLP',
-  description:
-      'Working as a Flutter developer, building responsive and interactive cross-platform applications. Focused on clean UI design, state management, and integrating real-world features while following best development practices.',
-  responsibilities: [
-    'Developed responsive UI screens using Flutter widgets for mobile and web platforms',
-    'Implemented state management using Provider, GetX, and Riverpod based on project needs',
-    'Integrated REST APIs and handled asynchronous data flow efficiently',
-    'Worked with local storage solutions like Hive and Shared Preferences',
-    'Collaborated with mentors and team members in an Agile development environment',
-  ],
-  skills: [
-    'Flutter',
-    'Dart',
-    'State Management',
-    'REST API Integration',
-    'Hive',
-    'Shared Preferences',
-    'UI/UX',
-    'Agile',
-  ],
-),
+      year: '2025',
+      period: 'May 2025 - Present',
+      title: 'Flutter Developer',
+      company: 'Bridgeon Solutions LLP',
+      description:
+          'Working as a Flutter developer, building responsive and interactive cross-platform applications. Focused on clean UI design, state management, and integrating real-world features while following best development practices.',
+      responsibilities: [
+        'Developed responsive UI screens using Flutter widgets for mobile and web platforms',
+        'Implemented state management using Provider, GetX, and Riverpod based on project needs',
+        'Integrated REST APIs and handled asynchronous data flow efficiently',
+        'Worked with local storage solutions like Hive and Shared Preferences',
+        'Collaborated with mentors and team members in an Agile development environment',
+      ],
+      skills: [
+        'Flutter',
+        'Dart',
+        'State Management',
+        'REST API Integration',
+        'Hive',
+        'Shared Preferences',
+        'UI/UX',
+        'Agile',
+      ],
+    ),
 
     // TimelineItem(
     //   year: '2025',
