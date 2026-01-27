@@ -49,13 +49,13 @@ class _HoverTiltCardState extends State<HoverTiltCard>
         if (mounted) setState(() => _mousePos = Offset.zero);
       },
       onHover: (details) {
-        final size = context.size!;
+        if (!mounted) return;
+        final size = context.size;
+        if (size == null) return;
         final center = Offset(size.width / 2, size.height / 2);
-        if (mounted) {
-          setState(() {
-            _mousePos = (details.localPosition - center) / 20; // Sensitivity
-          });
-        }
+        setState(() {
+          _mousePos = (details.localPosition - center) / 20; // Sensitivity
+        });
       },
       child: GestureDetector(
         onTap: widget.onTap,

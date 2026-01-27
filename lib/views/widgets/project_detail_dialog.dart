@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/project.dart';
-import 'package:profitillo/widgets/custom_button.dart';
+import 'package:profitillo/views/widgets/custom_button.dart';
 import 'dart:ui';
 
 class ProjectDetailDialog extends StatelessWidget {

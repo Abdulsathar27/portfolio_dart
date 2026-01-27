@@ -28,8 +28,12 @@ class _ProjectCardState extends State<ProjectCard> {
     final theme = Theme.of(context);
 
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovering = true),
-      onExit: (_) => setState(() => _isHovering = false),
+      onEnter: (_) {
+        if (mounted) setState(() => _isHovering = true);
+      },
+      onExit: (_) {
+        if (mounted) setState(() => _isHovering = false);
+      },
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap:

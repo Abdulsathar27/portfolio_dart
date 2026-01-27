@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/project.dart';
-import 'package:profitillo/widgets/project_card.dart';
+import 'package:profitillo/views/widgets/project_card.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});

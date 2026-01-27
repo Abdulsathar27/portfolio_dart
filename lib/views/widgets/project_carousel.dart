@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profitillo/models/project.dart';
-import 'package:profitillo/widgets/project_card.dart';
+import 'package:profitillo/views/widgets/project_card.dart';
 import 'dart:math';
 
 class ProjectCarousel extends StatefulWidget {

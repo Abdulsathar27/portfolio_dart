@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/data/mock_data.dart';
-import 'package:profitillo/widgets/animated_timeline.dart';
+import 'package:profitillo/views/widgets/animated_timeline.dart';
 
 class ExperienceSection extends StatelessWidget {
   const ExperienceSection({super.key});

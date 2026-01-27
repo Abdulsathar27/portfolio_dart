@@ -45,7 +45,9 @@ class _MagneticButtonState extends State<MagneticButton>
   }
 
   void _handleHover(PointerEvent event) {
-    final RenderBox box = context.findRenderObject() as RenderBox;
+    if (!mounted) return;
+    final RenderBox? box = context.findRenderObject() as RenderBox?;
+    if (box == null) return;
     final position = box.localToGlobal(Offset.zero);
     final center = position + Offset(box.size.width / 2, box.size.height / 2);
     final delta = event.position - center;
@@ -56,7 +58,6 @@ class _MagneticButtonState extends State<MagneticButton>
       });
     }
 
-    // Animate to target
     _animation = Tween<Offset>(
       begin: _animation.value,
       end: _target,

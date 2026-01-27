@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:provider/provider.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
+
 import 'package:profitillo/core/constants/app_strings.dart';
-import 'package:profitillo/widgets/custom_button.dart';
-import 'package:profitillo/widgets/responsive_wrapper.dart';
-import 'package:profitillo/widgets/animated_background.dart';
+import 'package:profitillo/views/widgets/custom_button.dart';
+import 'package:profitillo/views/widgets/responsive_wrapper.dart';
+import 'package:profitillo/views/widgets/animated_background.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profitillo/widgets/magnetic_text.dart';
-import 'package:profitillo/widgets/animated_role_tag.dart';
-import 'package:profitillo/providers/navigation_provider.dart';
+import 'package:profitillo/views/widgets/magnetic_text.dart';
+import 'package:profitillo/views/widgets/animated_role_tag.dart';
+import 'package:profitillo/providers/home_provider.dart';
 import 'package:profitillo/core/utils/web_utils.dart';
-import 'package:profitillo/widgets/interactive_illustration.dart';
+import 'package:profitillo/views/widgets/interactive_illustration.dart';
 
 class HeroSection extends StatelessWidget {
   const HeroSection({super.key});
@@ -77,7 +77,7 @@ class HeroSection extends StatelessWidget {
           "Hello, I'm",
           style: GoogleFonts.outfit(
             fontSize: 24,
-            color: AppColors.primary,
+            color: Theme.of(context).colorScheme.primary,
             fontWeight: FontWeight.w600,
             letterSpacing: 1.5,
           ),
@@ -94,7 +94,9 @@ class HeroSection extends StatelessWidget {
                 color: Theme.of(context).textTheme.displayLarge?.color,
                 shadows: [
                   Shadow(
-                    color: AppColors.primary.withValues(alpha: 0.3),
+                    color: Theme.of(
+                      context,
+                    ).colorScheme.primary.withValues(alpha: 0.3),
                     offset: const Offset(4, 4),
                     blurRadius: 20,
                   ),
@@ -115,7 +117,9 @@ class HeroSection extends StatelessWidget {
         Text(
               AppStrings.tagline,
               style: GoogleFonts.outfit(
-                color: AppColors.textSecondary,
+                color: Theme.of(
+                  context,
+                ).colorScheme.onSurface.withValues(alpha: 0.7),
                 fontSize: 25,
                 height: 1.6,
                 fontWeight: FontWeight.w300,
@@ -132,7 +136,7 @@ class HeroSection extends StatelessWidget {
                 CustomButton(
                   text: "View Projects",
                   onPressed: () {
-                    final navProvider = Provider.of<NavigationProvider>(
+                    final navProvider = Provider.of<HomeProvider>(
                       context,
                       listen: false,
                     );
@@ -172,12 +176,18 @@ class _ScrollIndicator extends StatelessWidget {
         Text(
           "Scroll Down",
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.textSecondary,
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.7),
             letterSpacing: 2,
           ),
         ),
         const SizedBox(height: 10),
-        Icon(Icons.keyboard_arrow_down, color: AppColors.primary, size: 30)
+        Icon(
+              Icons.keyboard_arrow_down,
+              color: Theme.of(context).colorScheme.primary,
+              size: 30,
+            )
             .animate(onPlay: (controller) => controller.repeat(reverse: true))
             .moveY(
               begin: -5,

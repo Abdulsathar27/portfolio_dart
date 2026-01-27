@@ -1,10 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
+
 import 'package:profitillo/core/constants/app_strings.dart';
-import 'package:profitillo/widgets/contact_form.dart';
-import 'package:profitillo/widgets/responsive_wrapper.dart';
+import 'package:profitillo/views/widgets/contact_form.dart';
+import 'package:profitillo/views/widgets/responsive_wrapper.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
@@ -27,7 +27,9 @@ class ContactSection extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    AppColors.primary.withValues(alpha: 0.1),
+                    Theme.of(
+                      context,
+                    ).colorScheme.primary.withValues(alpha: 0.1),
                     Colors.transparent,
                   ],
                 ),
@@ -44,7 +46,9 @@ class ContactSection extends StatelessWidget {
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    AppColors.secondary.withValues(alpha: 0.05),
+                    Theme.of(
+                      context,
+                    ).colorScheme.secondary.withValues(alpha: 0.05),
                     Colors.transparent,
                   ],
                 ),
@@ -108,7 +112,7 @@ class ContactSection extends StatelessWidget {
           AppStrings.contact,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: AppColors.primary,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2),
         const SizedBox(height: 20),
@@ -157,13 +161,15 @@ class ContactSection extends StatelessWidget {
   }) {
     return Row(
       children: [
-        Icon(icon, color: AppColors.primary, size: 20),
+        Icon(icon, color: Theme.of(context).colorScheme.primary, size: 20),
         const SizedBox(width: 16),
         Text(
           text,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: Theme.of(
+              context,
+            ).colorScheme.onSurface.withValues(alpha: 0.7),
+          ),
         ),
       ],
     ).animate().fadeIn(delay: delay.ms).slideX(begin: -0.1);
@@ -182,7 +188,9 @@ class ContactSection extends StatelessWidget {
               color: Theme.of(context).cardColor.withValues(alpha: 0.6),
               borderRadius: BorderRadius.circular(24),
               border: Border.all(
-                color: AppColors.primary.withValues(alpha: 0.1),
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.1),
               ),
               boxShadow: [
                 BoxShadow(

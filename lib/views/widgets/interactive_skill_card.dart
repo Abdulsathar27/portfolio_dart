@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/skill.dart';
-import 'package:profitillo/widgets/skill_tooltip.dart';
+import 'package:profitillo/views/widgets/skill_tooltip.dart';
 
 class InteractiveSkillCard extends StatefulWidget {
   final Skill skill;
@@ -43,7 +43,9 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
         _mousePos.value = Offset.zero;
       },
       onHover: (event) {
-        final RenderBox box = context.findRenderObject() as RenderBox;
+        if (!mounted) return;
+        final RenderBox? box = context.findRenderObject() as RenderBox?;
+        if (box == null) return;
         final center = box.size.center(Offset.zero);
         final localPos = box.globalToLocal(event.position);
         _mousePos.value = localPos - center;

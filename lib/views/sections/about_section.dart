@@ -3,9 +3,9 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:profitillo/core/constants/app_assets.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
-import 'package:profitillo/widgets/responsive_wrapper.dart';
-import 'package:profitillo/widgets/theme_aware_card.dart';
-import 'package:profitillo/widgets/highlight_text.dart';
+import 'package:profitillo/views/widgets/responsive_wrapper.dart';
+import 'package:profitillo/views/widgets/theme_aware_card.dart';
+import 'package:profitillo/views/widgets/highlight_text.dart';
 
 class AboutSection extends StatelessWidget {
   const AboutSection({super.key});

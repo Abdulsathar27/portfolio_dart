@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 
 class InteractiveTextField extends StatefulWidget {
   final String label;
@@ -46,24 +45,30 @@ class _InteractiveTextFieldState extends State<InteractiveTextField> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => setState(() => _isHovering = true),
-      onExit: (_) => setState(() => _isHovering = false),
+      onEnter: (_) {
+        if (mounted) setState(() => _isHovering = true);
+      },
+      onExit: (_) {
+        if (mounted) setState(() => _isHovering = false);
+      },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         decoration: BoxDecoration(
-          color: AppColors.surface.withValues(alpha: 0.5),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: _isFocused || _isHovering
-                ? AppColors.primary
-                : AppColors.primary.withValues(alpha: 0.2),
+                ? Theme.of(context).colorScheme.primary
+                : Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
             width: _isFocused ? 1.5 : 1.0,
           ),
           boxShadow: [
             if (_isFocused)
               BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.2),
+                color: Theme.of(
+                  context,
+                ).colorScheme.primary.withValues(alpha: 0.2),
                 blurRadius: 12,
                 spreadRadius: 2,
               ),
@@ -79,8 +84,10 @@ class _InteractiveTextFieldState extends State<InteractiveTextField> {
             labelText: widget.label,
             labelStyle: TextStyle(
               color: _isFocused
-                  ? AppColors.primary
-                  : AppColors.textSecondary.withValues(alpha: 0.7),
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(
+                      context,
+                    ).colorScheme.onSurface.withValues(alpha: 0.7),
             ),
             border: InputBorder.none,
             enabledBorder: InputBorder.none,

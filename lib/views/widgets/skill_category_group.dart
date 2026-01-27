@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/skill_category.dart';
-import 'package:profitillo/widgets/interactive_skill_card.dart';
+import 'package:profitillo/views/widgets/interactive_skill_card.dart';
 
 class SkillCategoryGroup extends StatelessWidget {
   final SkillCategory category;

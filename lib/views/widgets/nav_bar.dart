@@ -2,18 +2,18 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
+
 import 'package:profitillo/providers/theme_provider.dart';
-import 'package:profitillo/providers/navigation_provider.dart';
-import 'package:profitillo/widgets/responsive_wrapper.dart';
-import 'package:profitillo/widgets/magnetic_button.dart';
+import 'package:profitillo/providers/home_provider.dart';
+import 'package:profitillo/views/widgets/responsive_wrapper.dart';
+import 'package:profitillo/views/widgets/magnetic_button.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final navProvider = Provider.of<NavigationProvider>(context, listen: false);
+    final navProvider = Provider.of<HomeProvider>(context, listen: false);
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return ClipRect(
@@ -30,7 +30,7 @@ class NavBar extends StatelessWidget {
                   AppStrings.name,
                   style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                     fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                 ),
               ),
@@ -97,8 +97,12 @@ class _NavButtonState extends State<_NavButton> {
     return MagneticButton(
       onTap: widget.onTap,
       child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovering = true),
-        onExit: (_) => setState(() => _isHovering = false),
+        onEnter: (_) {
+          if (mounted) setState(() => _isHovering = true);
+        },
+        onExit: (_) {
+          if (mounted) setState(() => _isHovering = false);
+        },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
@@ -108,7 +112,9 @@ class _NavButtonState extends State<_NavButton> {
                 widget.title,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: _isHovering ? AppColors.primary : null,
+                  color: _isHovering
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
                 ),
               ),
               const SizedBox(height: 4),
@@ -116,7 +122,7 @@ class _NavButtonState extends State<_NavButton> {
                 duration: const Duration(milliseconds: 200),
                 height: 2,
                 width: _isHovering ? 20 : 0,
-                color: AppColors.primary,
+                color: Theme.of(context).colorScheme.primary,
               ),
             ],
           ),

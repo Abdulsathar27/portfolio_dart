@@ -3,9 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:profitillo/views/home_view.dart';
 import 'package:profitillo/providers/theme_provider.dart';
 import 'package:profitillo/core/theme/app_theme.dart';
-import 'package:profitillo/providers/navigation_provider.dart';
+import 'package:profitillo/providers/home_provider.dart';
+import 'package:profitillo/providers/contact_provider.dart';
 import 'package:profitillo/providers/mouse_provider.dart';
-import 'package:profitillo/widgets/custom_cursor.dart';
+import 'package:profitillo/views/widgets/custom_cursor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ChangeNotifierProvider(create: (_) => NavigationProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+        ChangeNotifierProvider(create: (_) => ContactProvider()),
         ChangeNotifierProvider(create: (_) => MouseProvider()),
       ],
       child: Consumer<ThemeProvider>(
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
             builder: (context, child) {
               return MouseRegion(
                 onHover: (event) {
+                  if (!context.mounted) return;
                   context.read<MouseProvider>().updatePosition(event.position);
                 },
                 cursor: SystemMouseCursors.none, // Hide default cursor
