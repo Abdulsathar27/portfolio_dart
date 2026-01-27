@@ -79,8 +79,7 @@ class MockData {
           proficiency: 0.85,
           description: 'Backend-as-a-Service',
           usageExample: 'Auth, Firestore, Cloud Functions',
-          iconUrl:
-              'https://firebase.google.com/static/images/brand-guidelines/logo-logomark.png',
+          iconUrl: 'assets/images/firebase_logo.png',
         ),
         Skill(
           name: 'REST API',
@@ -93,8 +92,7 @@ class MockData {
           proficiency: 0.90,
           description: 'Version Control',
           usageExample: 'Managed code history and collaboration',
-          iconUrl:
-              'https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png',
+          iconUrl: 'assets/images/git_logo.png',
         ),
       ],
     ),

@@ -3,9 +3,11 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "96abbb2bbec9eaf0bfbb90333770d87d",
-"assets/AssetManifest.bin.json": "7fd1333aef6f5c8ed186805d8c9dc061",
-"assets/AssetManifest.json": "d85d245d51a4548bb8265510c30e7aaa",
+const RESOURCES = {"assets/AssetManifest.bin": "36c0c988b173ca608d30393685e27123",
+"assets/AssetManifest.bin.json": "44bfef8649dd30e44f33d599501bca02",
+"assets/AssetManifest.json": "9f968825698845d427154a1032bd102a",
+"assets/assets/images/firebase_logo.png": "c9fbd6e9e7f0d8d3d46b7843c0425ad0",
+"assets/assets/images/git_logo.png": "728ff5a8e44d74cd0f2359ef0a9ec88a",
 "assets/assets/images/profile.jpg": "30ed63cc74b2b3c69acc9cbc0c70a4bb",
 "assets/assets/pdfs/Abdul%2520Sathar.pdf": "b687bc61140bfaa71474e3c9198d1a90",
 "assets/FontManifest.json": "c75f7af11fb9919e042ad2ee704db319",
@@ -30,14 +32,14 @@ const RESOURCES = {"assets/AssetManifest.bin": "96abbb2bbec9eaf0bfbb90333770d87d
 "canvaskit/skwasm_heavy.wasm": "8034ad26ba2485dab2fd49bdd786837b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "888483df48293866f9f41d3d9274a779",
-"flutter_bootstrap.js": "dac36da55e3afa4dd72d11d233a511e1",
+"flutter_bootstrap.js": "35416b9903bd580c3449337fa84c3a08",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "index.html": "2bb08b898e04bb4306e6cdab6297e7b5",
 "/": "2bb08b898e04bb4306e6cdab6297e7b5",
-"main.dart.js": "07c2f0db1d1f7a944ad66a7047ef37a0",
+"main.dart.js": "e6e0e6205e7de35ed2df5a9f9f7ff621",
 "manifest.json": "5579bf9a3f5b803fad93e6d8e00b2e6a",
 "resume.pdf": "b687bc61140bfaa71474e3c9198d1a90",
 "version.json": "22f343374f88bee8630a1a26b62dc52d"};

@@ -107,14 +107,26 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   if (widget.skill.iconUrl != null) ...[
-                                    Image.network(
-                                      widget.skill.iconUrl!,
-                                      width: 24,
-                                      height: 24,
-                                      errorBuilder:
-                                          (context, error, stackTrace) =>
-                                              const SizedBox.shrink(),
-                                    ),
+                                    if (widget.skill.iconUrl!.startsWith(
+                                      'http',
+                                    ))
+                                      Image.network(
+                                        widget.skill.iconUrl!,
+                                        width: 24,
+                                        height: 24,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                const SizedBox.shrink(),
+                                      )
+                                    else
+                                      Image.asset(
+                                        widget.skill.iconUrl!,
+                                        width: 24,
+                                        height: 24,
+                                        errorBuilder:
+                                            (context, error, stackTrace) =>
+                                                const SizedBox.shrink(),
+                                      ),
                                     const SizedBox(width: 8),
                                   ],
                                   Text(
