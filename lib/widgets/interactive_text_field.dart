@@ -11,7 +11,10 @@ class InteractiveTextField extends StatefulWidget {
     required this.label,
     this.maxLines = 1,
     this.controller,
+    this.validator,
   });
+
+  final String? Function(String?)? validator;
 
   @override
   State<InteractiveTextField> createState() => _InteractiveTextFieldState();
@@ -66,10 +69,11 @@ class _InteractiveTextFieldState extends State<InteractiveTextField> {
               ),
           ],
         ),
-        child: TextField(
+        child: TextFormField(
           controller: widget.controller,
           focusNode: _focusNode,
           maxLines: widget.maxLines,
+          validator: widget.validator,
           style: Theme.of(context).textTheme.bodyLarge,
           decoration: InputDecoration(
             labelText: widget.label,
