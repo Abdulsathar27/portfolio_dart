@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:profitillo/models/skill.dart';
 import 'package:profitillo/models/skill_category.dart';
 import 'package:profitillo/models/timeline_item.dart';
@@ -12,22 +14,21 @@ class MockData {
           proficiency: 0.95,
           description: 'Cross-platform UI toolkit',
           usageExample: 'Built responsive mobile & web applications',
-          iconUrl:
-              'https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png',
+          icon: FontAwesomeIcons.flutter,
         ),
         Skill(
           name: 'Dart',
           proficiency: 0.95,
           description: 'Optimized language for UI',
           usageExample: 'Developed core logic and data models',
-          iconUrl:
-              'https://upload.wikimedia.org/wikipedia/commons/7/7e/Dart-logo.png',
+          icon: Icons.code,
         ),
         Skill(
           name: 'Widget Testing',
           proficiency: 0.85,
           description: 'UI Component Testing',
           usageExample: 'Ensured widget reliability and regression testing',
+          icon: Icons.bug_report,
         ),
       ],
     ),
@@ -39,18 +40,21 @@ class MockData {
           proficiency: 0.90,
           description: 'Compile-safe State Management',
           usageExample: 'Managed complex app state with dependency injection',
+          icon: Icons.layers,
         ),
         Skill(
           name: 'Provider',
           proficiency: 0.90,
           description: 'InheritedWidget Wrapper',
           usageExample: 'Simple state sharing across widget tree',
+          icon: Icons.inventory_2,
         ),
         Skill(
           name: 'Bloc',
           proficiency: 0.80,
           description: 'Business Logic Component',
           usageExample: 'Separated business logic from UI events',
+          icon: Icons.extension,
         ),
       ],
     ),
@@ -62,12 +66,14 @@ class MockData {
           proficiency: 0.85,
           description: 'Separation of Concerns',
           usageExample: 'Implemented Domain, Data, and Presentation layers',
+          icon: Icons.architecture,
         ),
         Skill(
           name: 'MVVM',
           proficiency: 0.90,
           description: 'Model-View-ViewModel',
           usageExample: 'Decoupled UI from business logic',
+          icon: Icons.view_quilt,
         ),
       ],
     ),
@@ -79,20 +85,21 @@ class MockData {
           proficiency: 0.85,
           description: 'Backend-as-a-Service',
           usageExample: 'Auth, Firestore, Cloud Functions',
-          iconUrl: 'assets/images/firebase_logo.png',
+          icon: FontAwesomeIcons.fire,
         ),
         Skill(
           name: 'REST API',
           proficiency: 0.80,
           description: 'Network Communication',
           usageExample: 'Integrated 3rd party services via HTTP',
+          icon: Icons.api,
         ),
         Skill(
           name: 'Git',
           proficiency: 0.90,
           description: 'Version Control',
           usageExample: 'Managed code history and collaboration',
-          iconUrl: 'assets/images/git_logo.png',
+          icon: FontAwesomeIcons.gitAlt,
         ),
       ],
     ),
@@ -104,12 +111,14 @@ class MockData {
           proficiency: 0.75,
           description: 'Interface Design',
           usageExample: 'Translated designs to pixel-perfect code',
+          icon: FontAwesomeIcons.figma,
         ),
         Skill(
           name: 'Animations',
           proficiency: 0.85,
           description: 'Interactive Motion',
           usageExample: 'Created custom implicit and explicit animations',
+          icon: Icons.animation,
         ),
       ],
     ),

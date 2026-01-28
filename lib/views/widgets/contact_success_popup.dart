@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 
 class ContactSuccessPopup extends StatelessWidget {
   final VoidCallback onDismiss;
@@ -24,10 +23,14 @@ class ContactSuccessPopup extends StatelessWidget {
                         vertical: 24,
                       ),
                       decoration: BoxDecoration(
-                        color: AppColors.surface.withValues(alpha: 0.8),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.surface.withValues(alpha: 0.8),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(
-                          color: AppColors.primary.withValues(alpha: 0.3),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.3),
                         ),
                         boxShadow: [
                           BoxShadow(
@@ -43,14 +46,14 @@ class ContactSuccessPopup extends StatelessWidget {
                           Container(
                                 padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                  color: AppColors.primary.withValues(
-                                    alpha: 0.1,
-                                  ),
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withValues(alpha: 0.1),
                                   shape: BoxShape.circle,
                                 ),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.check_circle_outline,
-                                  color: AppColors.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   size: 40,
                                 ),
                               )
@@ -59,27 +62,31 @@ class ContactSuccessPopup extends StatelessWidget {
                               .then()
                               .shake(hz: 4, curve: Curves.easeInOut),
                           const SizedBox(height: 16),
-                          const Text(
+                          Text(
                             "Message Sent!",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
-                              color: AppColors.textPrimary,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           const SizedBox(height: 8),
-                          const Text(
+                          Text(
                             "Thanks for reaching out. I'll get back to you soon!",
                             textAlign: TextAlign.center,
-                            style: TextStyle(color: AppColors.textSecondary),
+                            style: TextStyle(
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
+                            ),
                           ),
                           const SizedBox(height: 24),
                           TextButton(
                             onPressed: onDismiss,
-                            child: const Text(
+                            child: Text(
                               "Close",
                               style: TextStyle(
-                                color: AppColors.primary,
+                                color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

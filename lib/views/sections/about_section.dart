@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:profitillo/core/constants/app_assets.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/views/widgets/responsive_wrapper.dart';
 import 'package:profitillo/views/widgets/theme_aware_card.dart';
@@ -66,12 +65,16 @@ class AboutSection extends StatelessWidget {
       children: [
         Row(
           children: [
-            Container(width: 40, height: 2, color: AppColors.primary),
+            Container(
+              width: 40,
+              height: 2,
+              color: Theme.of(context).colorScheme.primary,
+            ),
             const SizedBox(width: 10),
             Text(
               AppStrings.aboutMe,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppColors.primary,
+                color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.5,
               ),
@@ -153,7 +156,7 @@ class AboutSection extends StatelessWidget {
           text,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
             height: 1.6,
-            color: AppColors.textSecondary,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         )
         .animate()
@@ -172,14 +175,14 @@ class AboutSection extends StatelessWidget {
           value,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             fontWeight: FontWeight.bold,
-            color: AppColors.primary,
+            color: Theme.of(context).colorScheme.primary,
           ),
         ),
         Text(
           label,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          ),
         ),
       ],
     );

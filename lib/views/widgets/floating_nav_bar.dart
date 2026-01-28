@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/providers/home_provider.dart';
 import 'package:profitillo/providers/theme_provider.dart';
@@ -35,7 +34,9 @@ class FloatingNavBar extends StatelessWidget {
                       color: Theme.of(context).cardColor.withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(50),
                       border: Border.all(
-                        color: AppColors.primary.withValues(alpha: 0.2),
+                        color: Theme.of(
+                          context,
+                        ).colorScheme.primary.withValues(alpha: 0.2),
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -82,7 +83,9 @@ class FloatingNavBar extends StatelessWidget {
                           height: 20,
                           width: 1,
                           margin: const EdgeInsets.symmetric(horizontal: 8),
-                          color: AppColors.textSecondary.withValues(alpha: 0.3),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                         ),
                         const _ThemeToggle(),
                       ],
@@ -137,7 +140,7 @@ class _NavIconState extends State<_NavIcon> {
           margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             color: _isHovering
-                ? AppColors.primary.withValues(alpha: 0.1)
+                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.1)
                 : Colors.transparent,
             borderRadius: BorderRadius.circular(30),
           ),
@@ -148,8 +151,8 @@ class _NavIconState extends State<_NavIcon> {
                 widget.icon,
                 size: 20,
                 color: _isHovering
-                    ? AppColors.primary
-                    : AppColors.textSecondary,
+                    ? Theme.of(context).colorScheme.primary
+                    : Theme.of(context).colorScheme.onSurfaceVariant,
               ),
               AnimatedSize(
                 duration: const Duration(milliseconds: 200),
@@ -159,10 +162,10 @@ class _NavIconState extends State<_NavIcon> {
                     padding: const EdgeInsets.only(left: 8),
                     child: Text(
                       widget.label,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 14,
-                        color: AppColors.primary,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.clip,
@@ -189,7 +192,7 @@ class _ThemeToggle extends StatelessWidget {
       icon: Icon(
         themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode,
         size: 20,
-        color: AppColors.textSecondary,
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
       ),
     );
   }

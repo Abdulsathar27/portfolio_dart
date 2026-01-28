@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/data/mock_data.dart';
 import 'package:profitillo/views/widgets/animated_timeline.dart';
 
@@ -17,16 +16,16 @@ class ExperienceSection extends StatelessWidget {
             "Professional Experience",
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppColors.primary,
+              color: Theme.of(context).colorScheme.primary,
               letterSpacing: -0.5,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             "My journey in the tech industry",
-            style: Theme.of(
-              context,
-            ).textTheme.bodyLarge?.copyWith(color: AppColors.textSecondary),
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
           ),
           const SizedBox(height: 40),
           AnimatedTimeline(items: MockData.experience),

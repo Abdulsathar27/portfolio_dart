@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InteractiveSocialIcon extends StatefulWidget {
@@ -69,19 +68,24 @@ class _InteractiveSocialIconState extends State<InteractiveSocialIcon> {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: isHovering
-                        ? AppColors.primary.withValues(alpha: 0.1)
+                        ? Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.1)
                         : Colors.transparent,
                     shape: BoxShape.circle,
                     border: Border.all(
                       color: isHovering
-                          ? AppColors.primary
-                          : AppColors.textSecondary.withValues(alpha: 0.2),
+                          ? Theme.of(context).colorScheme.primary
+                          : Theme.of(context).colorScheme.onSurfaceVariant
+                                .withValues(alpha: 0.2),
                       width: 1.5,
                     ),
                     boxShadow: [
                       if (isHovering)
                         BoxShadow(
-                          color: AppColors.primary.withValues(alpha: 0.4),
+                          color: Theme.of(
+                            context,
+                          ).colorScheme.primary.withValues(alpha: 0.4),
                           blurRadius: 15,
                           spreadRadius: 2,
                         ),
@@ -91,8 +95,8 @@ class _InteractiveSocialIconState extends State<InteractiveSocialIcon> {
                     widget.icon,
                     size: 20,
                     color: isHovering
-                        ? AppColors.primary
-                        : AppColors.textSecondary,
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 );
               },

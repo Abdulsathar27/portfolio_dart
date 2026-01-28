@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/data/mock_data.dart';
 import 'package:profitillo/views/widgets/skill_category_group.dart';
@@ -36,7 +35,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             AppStrings.skills,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppColors.primary,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2),
           const SizedBox(height: 60),

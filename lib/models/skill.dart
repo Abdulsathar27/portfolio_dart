@@ -1,6 +1,8 @@
+import 'package:flutter/widgets.dart';
+
 class Skill {
   final String name;
-  final String? iconUrl; // Or use IconData if preferred
+  final IconData? icon;
   final double proficiency; // 0.0 to 1.0
 
   final String description;
@@ -8,7 +10,7 @@ class Skill {
 
   const Skill({
     required this.name,
-    this.iconUrl,
+    this.icon,
     this.proficiency = 0.0,
     required this.description,
     required this.usageExample,

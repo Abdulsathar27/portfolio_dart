@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/timeline_item.dart';
 
 class AnimatedTimeline extends StatefulWidget {
@@ -66,7 +65,9 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                             item.period,
                             textAlign: TextAlign.right,
                             style: GoogleFonts.spaceGrotesk(
-                              color: AppColors.textSecondary,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                             ),
@@ -89,9 +90,8 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                 child: Center(
                                   child: Container(
                                     width: 2,
-                                    color: AppColors.primary.withValues(
-                                      alpha: 0.2,
-                                    ),
+                                    color: Theme.of(context).colorScheme.primary
+                                        .withValues(alpha: 0.2),
                                   ),
                                 ),
                               ),
@@ -100,9 +100,11 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                               width: 12,
                               height: 12,
                               decoration: BoxDecoration(
-                                color: AppColors.background,
+                                color: Theme.of(
+                                  context,
+                                ).scaffoldBackgroundColor,
                                 border: Border.all(
-                                  color: AppColors.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   width: 2,
                                 ),
                                 shape: BoxShape.circle,
@@ -124,7 +126,9 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                 style: GoogleFonts.spaceGrotesk(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
-                                  color: AppColors.textPrimary,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
                                 ),
                               ),
                               const SizedBox(height: 4),
@@ -134,7 +138,7 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                 style: GoogleFonts.spaceGrotesk(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
-                                  color: AppColors.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -144,7 +148,9 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                 style: GoogleFonts.inter(
                                   fontSize: 16,
                                   height: 1.6,
-                                  color: AppColors.textSecondary,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurfaceVariant,
                                 ),
                               ),
                               const SizedBox(height: 16),
@@ -162,9 +168,10 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                           width: 6,
                                           height: 6,
                                           decoration: BoxDecoration(
-                                            color: AppColors.primary.withValues(
-                                              alpha: 0.6,
-                                            ),
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withValues(alpha: 0.6),
                                             shape: BoxShape.circle,
                                           ),
                                         ),
@@ -176,7 +183,9 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                           style: GoogleFonts.inter(
                                             fontSize: 15,
                                             height: 1.5,
-                                            color: AppColors.textSecondary,
+                                            color: Theme.of(
+                                              context,
+                                            ).colorScheme.onSurfaceVariant,
                                           ),
                                         ),
                                       ),
@@ -196,21 +205,25 @@ class _AnimatedTimelineState extends State<AnimatedTimeline>
                                       vertical: 6,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: AppColors.primary.withValues(
-                                        alpha: 0.05,
-                                      ),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withValues(alpha: 0.05),
                                       borderRadius: BorderRadius.circular(4),
                                       border: Border.all(
-                                        color: AppColors.primary.withValues(
-                                          alpha: 0.1,
-                                        ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary
+                                            .withValues(alpha: 0.1),
                                       ),
                                     ),
                                     child: Text(
                                       skill,
                                       style: GoogleFonts.spaceMono(
                                         fontSize: 12,
-                                        color: AppColors.primary,
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.primary,
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),

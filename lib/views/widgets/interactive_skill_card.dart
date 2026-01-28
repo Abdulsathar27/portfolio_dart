@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/skill.dart';
 import 'package:profitillo/views/widgets/skill_tooltip.dart';
 
@@ -83,19 +82,22 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
                             borderRadius: BorderRadius.circular(16),
                             border: Border.all(
                               color: isHovering
-                                  ? AppColors.primary
-                                  : AppColors.primary.withValues(alpha: 0.2),
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.outline
+                                        .withValues(alpha: 0.3),
                               width: 1.5,
                             ),
                             color: isHovering
-                                ? AppColors.primary.withValues(alpha: 0.1)
-                                : Colors.transparent,
+                                ? Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withValues(alpha: 0.1)
+                                : Theme.of(context).cardColor,
                             boxShadow: [
                               if (isHovering)
                                 BoxShadow(
-                                  color: AppColors.primary.withValues(
-                                    alpha: 0.3,
-                                  ),
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withValues(alpha: 0.3),
                                   blurRadius: 15,
                                   spreadRadius: 2,
                                 ),
@@ -108,27 +110,18 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  if (widget.skill.iconUrl != null) ...[
-                                    if (widget.skill.iconUrl!.startsWith(
-                                      'http',
-                                    ))
-                                      Image.network(
-                                        widget.skill.iconUrl!,
-                                        width: 24,
-                                        height: 24,
-                                        errorBuilder:
-                                            (context, error, stackTrace) =>
-                                                const SizedBox.shrink(),
-                                      )
-                                    else
-                                      Image.asset(
-                                        widget.skill.iconUrl!,
-                                        width: 24,
-                                        height: 24,
-                                        errorBuilder:
-                                            (context, error, stackTrace) =>
-                                                const SizedBox.shrink(),
-                                      ),
+                                  if (widget.skill.icon != null) ...[
+                                    Icon(
+                                      widget.skill.icon,
+                                      size: 24,
+                                      color: isHovering
+                                          ? Theme.of(
+                                              context,
+                                            ).colorScheme.primary
+                                          : Theme.of(
+                                              context,
+                                            ).colorScheme.onSurface,
+                                    ),
                                     const SizedBox(width: 8),
                                   ],
                                   Text(
@@ -137,8 +130,12 @@ class _InteractiveSkillCardState extends State<InteractiveSkillCard> {
                                         ?.copyWith(
                                           fontWeight: FontWeight.w600,
                                           color: isHovering
-                                              ? AppColors.primary
-                                              : Colors.white70,
+                                              ? Theme.of(
+                                                  context,
+                                                ).colorScheme.primary
+                                              : Theme.of(
+                                                  context,
+                                                ).colorScheme.onSurface,
                                         ),
                                   ),
                                 ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/skill_category.dart';
 import 'package:profitillo/views/widgets/interactive_skill_card.dart';
 
@@ -26,7 +25,7 @@ class SkillCategoryGroup extends StatelessWidget {
         Text(
               category.title,
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: AppColors.primary,
+                color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.1,
               ),

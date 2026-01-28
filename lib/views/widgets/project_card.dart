@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/project.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -52,17 +51,17 @@ class _ProjectCardState extends State<ProjectCard> {
           transform: Matrix4.identity()
             ..translate(0.0, _isHovering ? -8.0 : 0.0),
           decoration: BoxDecoration(
-            color: AppColors.surface,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
               color: _isHovering
-                  ? AppColors.primary.withValues(alpha: 0.5)
+                  ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.5)
                   : Colors.white.withValues(alpha: 0.1),
               width: _isHovering ? 1.5 : 1,
             ),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primary.withValues(
+                color: Theme.of(context).colorScheme.primary.withValues(
                   alpha: _isHovering ? 0.15 : 0.0,
                 ),
                 blurRadius: 20,
@@ -85,7 +84,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       widget.project.title,
                       style: theme.textTheme.headlineSmall?.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: AppColors.textPrimary,
+                        color: Theme.of(context).colorScheme.onSurface,
                         letterSpacing: -0.5,
                       ),
                     )
@@ -102,7 +101,7 @@ class _ProjectCardState extends State<ProjectCard> {
                 Text(
                   widget.project.description,
                   style: theme.textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     height: 1.5,
                   ),
                   maxLines: 2,
@@ -126,7 +125,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                 width: 4,
                                 height: 4,
                                 decoration: BoxDecoration(
-                                  color: AppColors.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   shape: BoxShape.circle,
                                 ),
                               ),
@@ -136,9 +135,10 @@ class _ProjectCardState extends State<ProjectCard> {
                               child: Text(
                                 highlight,
                                 style: theme.textTheme.bodySmall?.copyWith(
-                                  color: AppColors.textSecondary.withValues(
-                                    alpha: 0.9,
-                                  ),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant
+                                      .withValues(alpha: 0.9),
                                   height: 1.4,
                                 ),
                               ),
@@ -162,16 +162,20 @@ class _ProjectCardState extends State<ProjectCard> {
                             vertical: 5,
                           ),
                           decoration: BoxDecoration(
-                            color: AppColors.primary.withValues(alpha: 0.1),
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primary.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                              color: AppColors.primary.withValues(alpha: 0.2),
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.primary.withValues(alpha: 0.2),
                             ),
                           ),
                           child: Text(
                             tag,
                             style: theme.textTheme.labelSmall?.copyWith(
-                              color: AppColors.primary,
+                              color: Theme.of(context).colorScheme.primary,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 0.5,
                             ),
@@ -191,7 +195,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     Text(
                       "View Code",
                       style: theme.textTheme.labelLarge?.copyWith(
-                        color: AppColors.textPrimary,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -199,7 +203,7 @@ class _ProjectCardState extends State<ProjectCard> {
                     Icon(
                           Icons.arrow_forward,
                           size: 16,
-                          color: AppColors.primary,
+                          color: Theme.of(context).colorScheme.primary,
                         )
                         .animate(target: _isHovering ? 1 : 0)
                         .moveX(end: 4, duration: 200.ms, curve: Curves.easeOut),

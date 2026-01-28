@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/project.dart';
 import 'package:profitillo/views/widgets/project_card.dart';
 
@@ -18,7 +17,7 @@ class ProjectsSection extends StatelessWidget {
             "Featured Projects",
             style: Theme.of(context).textTheme.displaySmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppColors.primary,
+              color: Theme.of(context).colorScheme.primary,
               letterSpacing: -1,
             ),
           ).animate().fadeIn(duration: 600.ms).slideY(begin: 0.2, end: 0),
@@ -28,7 +27,7 @@ class ProjectsSection extends StatelessWidget {
           Text(
             "A selection of my recent work",
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: AppColors.textSecondary,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w300,
             ),
           ).animate().fadeIn(delay: 200.ms, duration: 600.ms),

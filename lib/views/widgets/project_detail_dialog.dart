@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 import 'package:profitillo/models/project.dart';
 import 'package:profitillo/views/widgets/custom_button.dart';
 import 'dart:ui';
@@ -87,14 +86,16 @@ class ProjectDetailDialog extends StatelessWidget {
                             children: project.tags.map((tag) {
                               return Chip(
                                 label: Text(tag),
-                                backgroundColor: AppColors.primary.withValues(
-                                  alpha: 0.1,
+                                backgroundColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary.withValues(alpha: 0.1),
+                                labelStyle: TextStyle(
+                                  color: Theme.of(context).colorScheme.primary,
                                 ),
-                                labelStyle: TextStyle(color: AppColors.primary),
                                 side: BorderSide(
-                                  color: AppColors.primary.withValues(
-                                    alpha: 0.2,
-                                  ),
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.primary.withValues(alpha: 0.2),
                                 ),
                               );
                             }).toList(),
@@ -108,7 +109,9 @@ class ProjectDetailDialog extends StatelessWidget {
                                     ?.copyWith(
                                       height: 1.6,
                                       fontSize: 18,
-                                      color: AppColors.textSecondary,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onSurfaceVariant,
                                     ),
                               ),
                             ),

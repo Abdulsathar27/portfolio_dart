@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:profitillo/core/constants/app_colors.dart';
 
 class _ScrollIndicator extends StatelessWidget {
   const _ScrollIndicator();
@@ -12,12 +11,16 @@ class _ScrollIndicator extends StatelessWidget {
         Text(
           "Scroll Down",
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: AppColors.textSecondary,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
             letterSpacing: 2,
           ),
         ),
         const SizedBox(height: 10),
-        Icon(Icons.keyboard_arrow_down, color: AppColors.primary, size: 30)
+        Icon(
+              Icons.keyboard_arrow_down,
+              color: Theme.of(context).colorScheme.primary,
+              size: 30,
+            )
             .animate(onPlay: (controller) => controller.repeat(reverse: true))
             .moveY(
               begin: -5,

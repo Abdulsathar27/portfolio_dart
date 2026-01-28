@@ -1,10 +1,52 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  static const Color primary = Color(0xFF2196F3); // Example blue
-  static const Color secondary = Color(0xFF03DAC6); // Example teal
-  static const Color background = Color(0xFF121212); // Dark background
-  static const Color surface = Color(0xFF1E1E1E); // Card background
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xB3FFFFFF);
+  // Raw Palette (Private)
+  static const Color _primaryBlue = Color(0xFF2196F3);
+
+  static const Color _secondaryTeal = Color(0xFF03DAC6);
+  static const Color _secondaryTealDark = Color(0xFF018786);
+
+  static const Color _backgroundDark = Color(0xFF121212);
+  static const Color _surfaceDark = Color(0xFF1E1E1E);
+  static const Color _surfaceDarkVariant = Color(0xFF2C2C2C);
+
+  static const Color _backgroundLight = Color(0xFFF8F9FA);
+  static const Color _surfaceLight = Color(0xFFFFFFFF);
+  static const Color _surfaceLightVariant = Color(0xFFF1F3F4);
+
+  static const Color _error = Color(0xFFB00020);
+
+  // Semantic Getters
+
+  // Light Theme
+  static const Color lightPrimary = _primaryBlue;
+  static const Color lightOnPrimary = Colors.white;
+  static const Color lightSecondary = _secondaryTealDark;
+  static const Color lightOnSecondary = Colors.white;
+  static const Color lightBackground = _backgroundLight;
+  static const Color lightSurface = _surfaceLight;
+  static const Color lightSurfaceVariant = _surfaceLightVariant;
+  static const Color lightOnSurface = Color(0xFF1C1B1F);
+  static const Color lightOnSurfaceVariant = Color(0xFF49454F);
+  static const Color lightOutline = Color(0xFF79747E);
+  static const Color lightError = _error;
+  static const Color lightOnError = Colors.white;
+
+  // Dark Theme
+  static const Color darkPrimary = _primaryBlue;
+  static const Color darkOnPrimary = Colors.white;
+  static const Color darkSecondary = _secondaryTeal;
+  static const Color darkOnSecondary = Colors.black;
+  static const Color darkBackground = _backgroundDark;
+  static const Color darkSurface = _surfaceDark;
+  static const Color darkSurfaceVariant = _surfaceDarkVariant;
+  static const Color darkOnSurface = Color(0xFFE6E1E5);
+  static const Color darkOnSurfaceVariant = Color(0xFFCAC4D0);
+  static const Color darkOutline = Color(0xFF938F99);
+  static const Color darkError = Color(0xFFCF6679);
+  static const Color darkOnError = Colors.black;
+
+  // Legacy/Direct Access (Deprecated - prefer Theme.of(context))
+  static const Color primary = _primaryBlue;
 }
