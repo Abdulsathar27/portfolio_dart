@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/providers/home_provider.dart';
 import 'package:profitillo/providers/theme_provider.dart';
+import 'package:profitillo/providers/animation_state_provider.dart';
 
 class FloatingNavBar extends StatelessWidget {
   const FloatingNavBar({super.key});
@@ -101,7 +102,7 @@ class FloatingNavBar extends StatelessWidget {
   }
 }
 
-class _NavIcon extends StatefulWidget {
+class _NavIcon extends StatelessWidget {
   final IconData icon;
   final String label;
   final VoidCallback onTap;
@@ -113,70 +114,72 @@ class _NavIcon extends StatefulWidget {
   });
 
   @override
-  State<_NavIcon> createState() => _NavIconState();
-}
-
-class _NavIconState extends State<_NavIcon> {
-  bool _isHovering = false;
-
-  @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (_) {
-        if (mounted) setState(() => _isHovering = true);
-      },
-      onExit: (_) {
-        if (mounted) setState(() => _isHovering = false);
-      },
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: EdgeInsets.symmetric(
-            horizontal: _isHovering ? 16 : 12,
-            vertical: 8,
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          decoration: BoxDecoration(
-            color: _isHovering
-                ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.1)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                widget.icon,
-                size: 20,
-                color: _isHovering
-                    ? Theme.of(context).colorScheme.primary
-                    : Theme.of(context).colorScheme.onSurfaceVariant,
+    final navId = 'nav_icon_$label';
+
+    return Selector<AnimationStateProvider, bool>(
+      selector: (_, provider) => provider.isHovering(navId),
+      builder: (context, isHovering, _) {
+        return MouseRegion(
+          onEnter: (_) {
+            context.read<AnimationStateProvider>().setHover(navId, true);
+          },
+          onExit: (_) {
+            context.read<AnimationStateProvider>().setHover(navId, false);
+          },
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: onTap,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              padding: EdgeInsets.symmetric(
+                horizontal: isHovering ? 16 : 12,
+                vertical: 8,
               ),
-              AnimatedSize(
-                duration: const Duration(milliseconds: 200),
-                child: SizedBox(
-                  width: _isHovering ? null : 0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8),
-                    child: Text(
-                      widget.label,
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                        color: Theme.of(context).colorScheme.primary,
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              decoration: BoxDecoration(
+                color: isHovering
+                    ? Theme.of(
+                        context,
+                      ).colorScheme.primary.withValues(alpha: 0.1)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    icon,
+                    size: 20,
+                    color: isHovering
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                  AnimatedSize(
+                    duration: const Duration(milliseconds: 200),
+                    child: SizedBox(
+                      width: isHovering ? null : 0,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Text(
+                          label,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.clip,
+                        ),
                       ),
-                      maxLines: 1,
-                      overflow: TextOverflow.clip,
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

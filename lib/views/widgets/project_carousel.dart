@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:profitillo/models/project.dart';
+import 'package:profitillo/providers/animation_state_provider.dart';
 import 'package:profitillo/views/widgets/project_card.dart';
+import 'package:provider/provider.dart';
 import 'dart:math';
 
 class ProjectCarousel extends StatefulWidget {
@@ -19,14 +21,18 @@ class ProjectCarousel extends StatefulWidget {
 
 class _ProjectCarouselState extends State<ProjectCarousel> {
   late PageController _pageController;
-  int _currentPage = 0;
   final double _viewportFraction = 0.5;
+  final String _carouselId = 'project_carousel';
 
   @override
   void initState() {
     super.initState();
+    final initialPage = context
+        .read<AnimationStateProvider>()
+        .getNumeric(_carouselId)
+        .toInt();
     _pageController = PageController(
-      initialPage: _currentPage,
+      initialPage: initialPage,
       viewportFraction: _viewportFraction,
     );
   }
@@ -45,23 +51,28 @@ class _ProjectCarouselState extends State<ProjectCarousel> {
         controller: _pageController,
         itemCount: widget.projects.length,
         onPageChanged: (index) {
-          setState(() {
-            _currentPage = index;
-          });
+          context.read<AnimationStateProvider>().setNumeric(
+            _carouselId,
+            index.toDouble(),
+          );
         },
         itemBuilder: (context, index) {
           return AnimatedBuilder(
             animation: _pageController,
             builder: (context, child) {
+              final currentPage = context
+                  .watch<AnimationStateProvider>()
+                  .getNumeric(_carouselId);
+
               double value = 0.0;
               if (_pageController.position.haveDimensions) {
                 value = index - _pageController.page!;
                 value = (value * 0.038).clamp(-1, 1);
               } else {
                 // Initial state
-                value = index == _currentPage
+                value = index == currentPage
                     ? 0.0
-                    : (index > _currentPage ? 1.0 : -1.0);
+                    : (index > currentPage ? 1.0 : -1.0);
               }
 
               final double scale = max(0.8, 1.0 - value.abs());

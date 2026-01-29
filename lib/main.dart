@@ -7,6 +7,7 @@ import 'package:profitillo/providers/home_provider.dart';
 import 'package:profitillo/providers/contact_provider.dart';
 import 'package:profitillo/providers/mouse_provider.dart';
 import 'package:profitillo/views/widgets/custom_cursor.dart';
+import 'package:profitillo/providers/animation_state_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HomeProvider()),
         ChangeNotifierProvider(create: (_) => ContactProvider()),
         ChangeNotifierProvider(create: (_) => MouseProvider()),
+        ChangeNotifierProvider(create: (_) => AnimationStateProvider()),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {

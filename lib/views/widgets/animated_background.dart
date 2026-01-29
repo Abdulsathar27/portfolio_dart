@@ -38,7 +38,7 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
             _random.nextDouble() * size.height,
           ),
           velocity: Offset(
-            (_random.nextDouble() - 0.5) * 0.2, // Slower speed
+            (_random.nextDouble() - 0.5) * 0.2, 
             (_random.nextDouble() - 0.5) * 0.2,
           ),
           size: 2 + _random.nextDouble() * 4,
