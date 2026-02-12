@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "scripts": {
         "build": "echo 'Build skipped - using committed artifacts'",
-        "postbuild": "node tool/patch_service_worker.js"
+        "postbuild": "node tool/kill_service_worker.js"
     },
     "dependencies": {}
 }

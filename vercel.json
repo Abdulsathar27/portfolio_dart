@@ -7,6 +7,15 @@
     ],
     "headers": [
         {
+            "source": "/(flutter_service_worker.js|main.dart.js|index.html|flutter.js|flutter_bootstrap.js|manifest.json)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=0, must-revalidate, no-cache"
+                }
+            ]
+        },
+        {
             "source": "/manifest.json",
             "headers": [
                 {
