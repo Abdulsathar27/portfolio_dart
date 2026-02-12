@@ -32,14 +32,14 @@ const RESOURCES = {"assets/AssetManifest.bin": "36c0c988b173ca608d30393685e27123
 "canvaskit/skwasm_heavy.wasm": "8034ad26ba2485dab2fd49bdd786837b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "flutter.js": "888483df48293866f9f41d3d9274a779",
-"flutter_bootstrap.js": "46d059f689d3a5bffecf63c43e382688",
+"flutter_bootstrap.js": "4ec7cafcd0735f4f3cf1f2a8b28b4d7e",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
 "index.html": "2bb08b898e04bb4306e6cdab6297e7b5",
 "/": "2bb08b898e04bb4306e6cdab6297e7b5",
-"main.dart.js": "0dd7c2be50c62b13f612af4f3cbd20d9",
+"main.dart.js": "37112b5aeb07d32543b93aef8c538e25",
 "manifest.json": "5579bf9a3f5b803fad93e6d8e00b2e6a",
 "resume.pdf": "b687bc61140bfaa71474e3c9198d1a90",
 "version.json": "22f343374f88bee8630a1a26b62dc52d"};
@@ -123,12 +123,7 @@ self.addEventListener("activate", function(event) {
 });
 // The fetch handler redirects requests for RESOURCE files to the service
 // worker cache.
-
 self.addEventListener("fetch", (event) => {
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
-
   if (event.request.method !== 'GET') {
     return;
   }
