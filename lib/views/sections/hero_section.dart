@@ -125,24 +125,28 @@ class HeroSection extends StatelessWidget {
 
         const SizedBox(height: 10),
 
-        MagneticText(
-              text: AppStrings.name,
-              style: GoogleFonts.outfit(
-                fontWeight: FontWeight.w900,
-                fontSize: _getNameFontSize(context),
-                height: 1.0,
-                color: Theme.of(context).textTheme.displayLarge?.color,
-                shadows: [
-                  Shadow(
-                    color: Theme.of(
-                      context,
-                    ).colorScheme.primary.withOpacity(0.3),
-                    offset: const Offset(4, 4),
-                    blurRadius: 20,
-                  ),
-                ],
+        FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: centered ? Alignment.center : Alignment.centerLeft,
+              child: MagneticText(
+                text: AppStrings.name,
+                style: GoogleFonts.outfit(
+                  fontWeight: FontWeight.w900,
+                  fontSize: _getNameFontSize(context),
+                  height: 1.0,
+                  color: Theme.of(context).textTheme.displayLarge?.color,
+                  shadows: [
+                    Shadow(
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.primary.withOpacity(0.3),
+                      offset: const Offset(4, 4),
+                      blurRadius: 20,
+                    ),
+                  ],
+                ),
+                strength: 0.8,
               ),
-              strength: 0.8,
             )
             .animate()
             .fadeIn(delay: 200.ms, duration: 800.ms, curve: Curves.easeOut)

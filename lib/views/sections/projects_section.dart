@@ -9,12 +9,13 @@ class ProjectsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveUtils.isMobile(context);
+    // We can rely on LayoutBuilder for maxWidth constraints,
+    // but we can also use ResponsiveUtils for general breakpoints if we want to be consistent with other sections.
 
     return Container(
       padding: EdgeInsets.symmetric(
         vertical: 100,
-        horizontal: isMobile ? 20 : 40,
+        horizontal: ResponsiveUtils.isMobile(context) ? 20 : 40,
       ),
       width: double.infinity,
       child: Center(
@@ -45,39 +46,33 @@ class ProjectsSection extends StatelessWidget {
 
               LayoutBuilder(
                 builder: (context, constraints) {
-                  // Apply Option A: SliverGridDelegateWithMaxCrossAxisExtent
-                  // content width checks to determine optimal maxExtent and aspect ratio
-                  // If desktop (width >= tabletBreakpoint), we might want 3 columns max.
-                  // 1200 / 3 = 400. So maxCrossAxisExtent = 400.
-                  // If tablet, still good.
-
-                  double childAspectRatio =
-                      0.75; // Default safe vertical aspect ratio (height > width)
-                  // On very wide screens, 0.75 might be TOO tall if the card is wide.
-                  // If screen is narrow, 0.75 is good.
-
-                  if (ResponsiveUtils.isDesktop(context)) {
-                    childAspectRatio = 0.8;
-                  } else if (ResponsiveUtils.isTablet(context)) {
-                    childAspectRatio = 0.8;
-                  } else {
-                    childAspectRatio = 0.75;
+                  // Determine columns based on available width
+                  int columns = 1;
+                  if (constraints.maxWidth >= 1024) {
+                    columns = 3;
+                  } else if (constraints.maxWidth >= 600) {
+                    columns = 2;
                   }
 
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 400,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 24,
-                      childAspectRatio: childAspectRatio,
-                    ),
-                    itemCount: mockProjects.length,
-                    itemBuilder: (context, index) {
-                      return ProjectCard(
-                            project: mockProjects[index],
-                            index: index,
+                  // Calculate card width
+                  // Total width = (cardWidth * columns) + (spacing * (columns - 1))
+                  // cardWidth = (Total width - (spacing * (columns - 1))) / columns
+                  const double spacing = 24.0;
+                  final double totalSpacing = spacing * (columns - 1);
+                  final double cardWidth =
+                      (constraints.maxWidth - totalSpacing) / columns;
+
+                  return Wrap(
+                    spacing: spacing,
+                    runSpacing: spacing,
+                    children: List.generate(mockProjects.length, (index) {
+                      return SizedBox(
+                            width: cardWidth,
+                            // No height constraint here, let it grow!
+                            child: ProjectCard(
+                              project: mockProjects[index],
+                              index: index,
+                            ),
                           )
                           .animate()
                           .fadeIn(delay: (100 * index).ms, duration: 600.ms)
@@ -86,7 +81,7 @@ class ProjectsSection extends StatelessWidget {
                             end: 0,
                             curve: Curves.easeOutQuad,
                           );
-                    },
+                    }),
                   );
                 },
               ),

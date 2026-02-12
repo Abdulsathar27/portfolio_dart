@@ -123,7 +123,12 @@ self.addEventListener("activate", function(event) {
 });
 // The fetch handler redirects requests for RESOURCE files to the service
 // worker cache.
+
 self.addEventListener("fetch", (event) => {
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+
   if (event.request.method !== 'GET') {
     return;
   }
