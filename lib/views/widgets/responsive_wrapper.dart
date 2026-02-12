@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/utils/responsive_utils.dart';
 
 class ResponsiveWrapper extends StatelessWidget {
   final Widget mobile;
@@ -13,22 +14,19 @@ class ResponsiveWrapper extends StatelessWidget {
   });
 
   static bool isMobile(BuildContext context) =>
-      MediaQuery.of(context).size.width < 600;
-
+      ResponsiveUtils.isMobile(context);
   static bool isTablet(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 600 &&
-      MediaQuery.of(context).size.width < 1200;
-
+      ResponsiveUtils.isTablet(context);
   static bool isDesktop(BuildContext context) =>
-      MediaQuery.of(context).size.width >= 1200;
+      ResponsiveUtils.isDesktop(context);
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= 1200) {
+        if (constraints.maxWidth >= ResponsiveUtils.tabletBreakpoint) {
           return desktop;
-        } else if (constraints.maxWidth >= 600) {
+        } else if (constraints.maxWidth >= ResponsiveUtils.mobileBreakpoint) {
           return tablet ?? desktop;
         } else {
           return mobile;

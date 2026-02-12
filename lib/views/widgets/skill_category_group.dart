@@ -3,6 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:profitillo/models/skill_category.dart';
 import 'package:profitillo/views/widgets/interactive_skill_card.dart';
 
+import '../../core/utils/responsive_utils.dart';
+
 class SkillCategoryGroup extends StatelessWidget {
   final SkillCategory category;
   final String? hoveredSkillName;
@@ -19,6 +21,9 @@ class SkillCategoryGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveUtils.isMobile(context);
+    final spacing = isMobile ? 8.0 : 16.0;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,8 +40,8 @@ class SkillCategoryGroup extends StatelessWidget {
             .slideX(begin: -0.1, curve: Curves.easeOut),
         const SizedBox(height: 20),
         Wrap(
-          spacing: 16,
-          runSpacing: 16,
+          spacing: spacing,
+          runSpacing: spacing,
           children: category.skills.map((skill) {
             final isDimmed =
                 hoveredSkillName != null && hoveredSkillName != skill.name;

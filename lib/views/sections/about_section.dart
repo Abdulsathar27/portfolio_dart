@@ -11,8 +11,15 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveWrapper.isMobile(context);
+    final horizontalPadding = isMobile ? 20.0 : 40.0;
+    final verticalPadding = isMobile ? 60.0 : 100.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 100),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: verticalPadding,
+      ),
       child: ResponsiveWrapper(
         mobile: _buildMobileLayout(context),
         desktop: _buildDesktopLayout(context),

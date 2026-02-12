@@ -4,6 +4,8 @@ import 'package:profitillo/core/constants/app_strings.dart';
 import 'package:profitillo/data/mock_data.dart';
 import 'package:profitillo/views/widgets/skill_category_group.dart';
 
+import '../../core/utils/responsive_utils.dart';
+
 class SkillsSection extends StatefulWidget {
   const SkillsSection({super.key});
 
@@ -25,8 +27,15 @@ class _SkillsSectionState extends State<SkillsSection> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = ResponsiveUtils.isMobile(context);
+    final horizontalPadding = isMobile ? 20.0 : 40.0;
+    final verticalPadding = isMobile ? 60.0 : 80.0;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 80),
+      padding: EdgeInsets.symmetric(
+        horizontal: horizontalPadding,
+        vertical: verticalPadding,
+      ),
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

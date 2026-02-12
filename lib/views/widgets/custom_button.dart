@@ -7,6 +7,7 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final bool isOutlined;
   final IconData? icon;
+  final double? width;
 
   const CustomButton({
     super.key,
@@ -14,10 +15,16 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.isOutlined = false,
     this.icon,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
+    // If width is provided, we can wrap in SizedBox.
+    // However, magnetic effect might need to know about size.
+    // MagneticButton wraps the child. If child is finite, magnetic works well.
+    // If child is infinite width, magnetic might behave differently.
+
     final theme = Theme.of(context);
     final style = ElevatedButton.styleFrom(
       backgroundColor: isOutlined ? Colors.transparent : AppColors.primary,
@@ -28,6 +35,7 @@ class CustomButton extends StatelessWidget {
         fontWeight: FontWeight.bold,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      minimumSize: width != null ? Size(width!, 50) : null,
     );
 
     Widget buttonContent;
@@ -46,6 +54,10 @@ class CustomButton extends StatelessWidget {
       );
     }
 
-    return MagneticButton(child: buttonContent);
+    // If wrapping in MagneticButton, ensure the button itself respects width.
+    return SizedBox(
+      width: width,
+      child: MagneticButton(child: buttonContent),
+    );
   }
 }

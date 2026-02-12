@@ -79,6 +79,8 @@ class ProjectCard extends StatelessWidget {
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize:
+                      MainAxisSize.min, // Allow column to shrink wrap content
                   children: [
                     // Title
                     Text(
@@ -105,7 +107,7 @@ class ProjectCard extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onSurfaceVariant,
                         height: 1.5,
                       ),
-                      maxLines: 2,
+                      maxLines: 3, // Allow 1 more line if needed, or keep 2
                       overflow: TextOverflow.ellipsis,
                     ),
 
@@ -151,9 +153,9 @@ class ProjectCard extends StatelessWidget {
                           ),
                         ),
 
-                    const Spacer(),
-                    const SizedBox(height: 24),
-
+                    const SizedBox(
+                      height: 24,
+                    ), // Replaced Spacer with fixed space
                     // Tags
                     Wrap(
                           spacing: 8,
