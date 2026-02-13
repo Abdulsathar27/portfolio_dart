@@ -2,8 +2,7 @@
     "name": "profitillo",
     "version": "1.0.0",
     "scripts": {
-        "build": "echo 'Build skipped - using committed artifacts'",
-        "postbuild": "node tool/kill_service_worker.js"
+        "build": "flutter build web --release --pwa-strategy=none"
     },
     "dependencies": {}
 }
