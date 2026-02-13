@@ -19,6 +19,9 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <meta name="description" content="Portfolio of a Flutter Developer showcasing projects, skills, and experience.">
   <meta name="keywords" content="Flutter, Dart, Developer, Portfolio, Mobile App, Web App">
   <meta name="author" content="Abdul Sathar">
@@ -34,6 +37,16 @@
 
   <title>profitillo</title>
   <link rel="manifest" href="manifest.json">
+  <script>
+    // Force unregister service workers to clear old cache
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
+  </script>
 </head>
 
 <body>
